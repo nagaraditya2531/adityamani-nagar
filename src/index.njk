@@ -20,18 +20,22 @@ description: Researcher and writer. Research, publications, essays, reading and 
       </figure>
     </div>
 
-    {# --- Now block, from src/_data/now.yaml --- #}
+    {# --- Now block. Hidden entirely if show is false or there are no lines. --- #}
+    {% if now.show and now.lines and now.lines.length %}
     <div class="now rise">
       <div class="now-head">
         <span class="mono">Now</span>
-        <span class="mono">Updated {{ now.updated }}</span>
+        {% if now.updated %}<span class="mono">Updated {{ now.updated }}</span>{% endif %}
       </div>
       <ul class="now-list">
         {% for line in now.lines %}
-        <li><span class="k">{{ line.label }}</span><span>{{ line.text }}</span></li>
+          {% if line.text %}
+          <li><span class="k">{{ line.label }}</span><span>{{ line.text }}</span></li>
+          {% endif %}
         {% endfor %}
       </ul>
     </div>
+    {% endif %}
   </div>
 </section>
 
@@ -44,8 +48,10 @@ description: Researcher and writer. Research, publications, essays, reading and 
     </div>
     <div class="feed rise">
       {% for item in collections.everything | limit(5) %}
+      {# Reading entries have no page of their own, so they point at the list. #}
+      {% set target = item.url if item.url else '/reading/' %}
       <article class="item" data-kind="{% if 'reading' in item.filePathStem or 'places' in item.filePathStem %}life{% else %}work{% endif %}">
-        <a class="item-link" href="{{ item.url or '/reading/' }}">
+        <a class="item-link" href="{{ target }}">
           <span class="item-type">{% if 'papers' in item.filePathStem %}Paper{% elif 'writing' in item.filePathStem %}Essay{% elif 'places' in item.filePathStem %}Places{% else %}Reading{% endif %}</span>
           <span class="item-title">{{ item.data.title }}</span>
           <span class="item-meta">{{ item.data.journal or item.data.where or item.data.author or "" }} · {{ item.data.date | monthYear }}</span>
