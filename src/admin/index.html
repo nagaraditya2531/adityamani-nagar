@@ -9,8 +9,31 @@
   <title>Atlas — Editor</title>
 </head>
 <body>
-  <!-- No type="module" here: the Sveltia docs say the CDN build is not an ES
-       module and adding it can cause odd behaviour. -->
-  <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
+  <!-- ======================================================================
+       VENDORED CMS — this loads from your own repository, not the internet.
+
+       The file lives at src/assets/sveltia-cms.js. Nothing external can
+       change it, break it, or take it away. If unpkg, npm or the Sveltia
+       project itself disappeared tomorrow, this editor keeps working.
+
+       Installed version: v0.172.4
+       Installed on:      26 July 2026
+       Releases:          github.com/sveltia/sveltia-cms/releases
+
+       Note: this project releases often — sometimes weekly. Check the
+       releases page a couple of times a year; you do not need to keep up.
+
+       TO UPGRADE (twice a year is plenty):
+         1. Read the release notes on the Sveltia GitHub repo
+         2. Open https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js
+         3. Save it, replace src/assets/sveltia-cms.js
+         4. Update the version and date above
+         5. Load /admin/ and check it still works
+
+       IF IT EVER BREAKS after an upgrade, put the old file back — or
+       temporarily swap the line below for:
+         <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
+       ====================================================================== -->
+  <script src="/assets/sveltia-cms.js"></script>
 </body>
 </html>

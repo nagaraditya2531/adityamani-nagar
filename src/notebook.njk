@@ -1,0 +1,66 @@
+---
+layout: base.njk
+permalink: /notebook/
+title: Notebook
+description: Essays, and notes on what I'm reading.
+---
+<div class="wrap">
+  <div class="pagehead rise">
+    <span class="mono">Notebook</span>
+    <h1>Thinking out loud, and reading notes.</h1>
+    <p>Essays when I have something worth arguing, and a line or two on books and
+       papers that changed something. Less polished than the papers, often more useful.</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="wrap">
+
+    <div class="filters rise" role="group" aria-label="Filter by kind">
+      <button class="filter" data-filter="all" aria-pressed="true">All</button>
+      <button class="filter" data-filter="essay" aria-pressed="false">Essays</button>
+      <button class="filter" data-filter="reading" aria-pressed="false">Reading</button>
+    </div>
+
+    <div class="rise">
+      {% for group in collections.notebook | byYear %}
+      <section class="year">
+        <div class="year-inner">
+          <h3 class="year-mark">{{ group.year }}</h3>
+          <div>
+            {% for item in group.items %}
+              {% if "writing" in item.filePathStem %}
+              {# ---- an essay: has its own page ---- #}
+              <article class="item" data-type="essay">
+                <a class="item-link{% if item.data.image %} has-thumb{% endif %}" href="{{ item.url }}">
+                  {% if item.data.image %}<img class="item-thumb" src="{{ item.data.image }}" alt="{{ item.data.title or "Untitled" }} — {{ site.name }}" loading="lazy" decoding="async">{% endif %}
+                  <span class="item-type">Essay</span>
+                  <span class="item-title">{{ (item.data.title or "Untitled") | chem | safe }}</span>
+                  <span class="item-meta">{{ item.data.summary }}</span>
+                  <span class="item-arrow" aria-hidden="true">→</span>
+                </a>
+              </article>
+              {% else %}
+              {# ---- a reading note: the note IS the content, no page needed ---- #}
+              <article class="item note" data-type="reading">
+                <div class="note-inner">
+                  {% if item.data.cover %}<img class="read-cover" src="{{ item.data.cover }}" alt="Cover of {{ item.data.title or "Untitled" }}" loading="lazy" decoding="async">{% endif %}
+                  <div>
+                    <span class="item-type">{{ item.data.kind | capitalize }}</span>
+                    <span class="note-title">{{ (item.data.title or "Untitled") | chem | safe }}</span>
+                    <span class="note-author">{{ item.data.author }}</span>
+                    <p class="read-note">{{ item.data.note | chem | safe }}</p>
+                  </div>
+                </div>
+              </article>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      </section>
+      {% endfor %}
+    </div>
+
+    <p class="count mono"></p>
+  </div>
+</section>

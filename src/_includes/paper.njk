@@ -8,8 +8,8 @@ layout: base.njk
 
     <header class="paper-head">
       <a class="crumb" href="/publications/">← Publications</a>
-      <h1>{{ title }}</h1>
-      {% if authors %}<p class="paper-authors">{{ authors }}</p>{% endif %}
+      <h1>{{ (title or "Untitled") | chem | safe }}</h1>
+      {% if authors %}<p class="paper-authors">{{ authors | chem | safe }}</p>{% endif %}
     </header>
 
     <div class="article-grid">
@@ -18,17 +18,17 @@ layout: base.njk
         {% if abstract %}
         <section class="abstract">
           <span class="mono">Abstract</span>
-          <p>{{ abstract }}</p>
+          <p>{{ abstract | chem | safe }}</p>
         </section>
         {% endif %}
 
         {% if problem or mattered or found or contribution or next %}
         <dl class="five">
-          {% if problem %}<div><dt>The problem</dt><dd>{{ problem }}</dd></div>{% endif %}
-          {% if mattered %}<div><dt>Why it mattered</dt><dd>{{ mattered }}</dd></div>{% endif %}
-          {% if found %}<div><dt>What we found</dt><dd>{{ found }}</dd></div>{% endif %}
-          {% if contribution %}<div><dt>My contribution</dt><dd>{{ contribution }}</dd></div>{% endif %}
-          {% if next %}<div><dt>What's next</dt><dd>{{ next }}</dd></div>{% endif %}
+          {% if problem %}<div><dt>The problem</dt><dd>{{ problem | chem | safe }}</dd></div>{% endif %}
+          {% if mattered %}<div><dt>Why it mattered</dt><dd>{{ mattered | chem | safe }}</dd></div>{% endif %}
+          {% if found %}<div><dt>What we found</dt><dd>{{ found | chem | safe }}</dd></div>{% endif %}
+          {% if contribution %}<div><dt>My contribution</dt><dd>{{ contribution | chem | safe }}</dd></div>{% endif %}
+          {% if next %}<div><dt>What's next</dt><dd>{{ next | chem | safe }}</dd></div>{% endif %}
         </dl>
         {% endif %}
 
@@ -46,7 +46,7 @@ layout: base.njk
       <aside class="paper-meta">
         <dl>
           {% if journal %}
-          <div><dt>Published in</dt><dd>{{ journal }}{% if year %}, {{ year }}{% endif %}</dd></div>
+          <div><dt>Published in</dt><dd>{{ journal | chem | safe }}{% if year %}, {{ year }}{% endif %}</dd></div>
           {% elif year %}
           <div><dt>Year</dt><dd>{{ year }}</dd></div>
           {% endif %}

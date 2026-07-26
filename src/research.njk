@@ -20,8 +20,8 @@ description: Areas of work and open questions.
       <article class="chapter" data-status="{{ c.data.status }}">
         {% if c.data.image %}<img class="chapter-img" src="{{ c.data.image }}" alt="{{ c.data.title }} research — {{ site.name }}" loading="lazy" decoding="async">{% endif %}
         <span class="chapter-span">{{ c.data.span }} · {{ c.data.status | capitalize }}</span>
-        <h3>{{ c.data.title }}</h3>
-        <p>{{ c.data.summary }}</p>
+        <h3>{{ (c.data.title or "Untitled") | chem | safe }}</h3>
+        <p>{{ c.data.summary | chem | safe }}</p>
         <span class="chapter-meta">{{ c.data.meta }}</span>
       </article>
       {% endfor %}

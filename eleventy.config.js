@@ -65,8 +65,21 @@ module.exports = function (eleventyConfig) {
     visible(c.getFilteredByGlob("src/content/reading/*.md")).sort(newestFirst)
   );
 
-  eleventyConfig.addCollection("places", (c) =>
-    visible(c.getFilteredByGlob("src/content/places/*.md")).sort(newestFirst)
+  /* Writing and reading in one list — the Notebook page.
+     Two thin sections look emptier than one that always has something in it. */
+  eleventyConfig.addCollection("notebook", (c) => {
+    const all = []
+      .concat(c.getFilteredByGlob("src/content/writing/*.md"))
+      .concat(c.getFilteredByGlob("src/content/reading/*.md"));
+    return visible(all).sort(newestFirst);
+  });
+
+  eleventyConfig.addCollection("conferences", (c) =>
+    visible(c.getFilteredByGlob("src/content/conferences/*.md")).sort(newestFirst)
+  );
+
+  eleventyConfig.addCollection("detours", (c) =>
+    visible(c.getFilteredByGlob("src/content/detours/*.md")).sort(newestFirst)
   );
 
   eleventyConfig.addCollection("chapters", (c) =>
@@ -80,7 +93,8 @@ module.exports = function (eleventyConfig) {
     const all = []
       .concat(c.getFilteredByGlob("src/content/papers/*.md"))
       .concat(c.getFilteredByGlob("src/content/writing/*.md"))
-      .concat(c.getFilteredByGlob("src/content/places/*.md"))
+      .concat(c.getFilteredByGlob("src/content/conferences/*.md"))
+      .concat(c.getFilteredByGlob("src/content/detours/*.md"))
       .concat(c.getFilteredByGlob("src/content/reading/*.md"));
     return visible(all).sort(newestFirst);
   });
@@ -106,6 +120,54 @@ module.exports = function (eleventyConfig) {
     return d
       ? d.toLocaleDateString("en-GB", { month: "long", year: "numeric" })
       : "";
+  });
+
+  /* ---- Chemical notation -------------------------------------------------
+     Lets you write subscripts and superscripts in any CMS field:
+
+        H~2~O        ->  H<sub>2</sub>O
+        Nd^3+^       ->  Nd<sup>3+</sup>
+        4f^3^        ->  4f<sup>3</sup>
+        10^-6^ M     ->  10<sup>-6</sup> M
+
+     Use it in a template as:  {{ title | chem | safe }}
+     The text is escaped first, so nothing else in the field can inject HTML.
+     -------------------------------------------------------------------- */
+  const escapeHtml = (str) =>
+    String(str)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+
+  eleventyConfig.addFilter("chem", (value) => {
+    if (value === undefined || value === null || value === "") return "";
+    return escapeHtml(value)
+      .replace(/\^([^\s^]+)\^/g, "<sup>$1</sup>")
+      .replace(/~([^\s~]+)~/g, "<sub>$1</sub>");
+  });
+
+  /* ---- Which top-level menu item is the current page under? ------------
+     Used to decide whether to show a sub-menu, and which one.
+     Checks, in order: an exact match, a match on one of its sub-items,
+     then the longest URL prefix (so /work/some-paper/ matches /work/).
+     -------------------------------------------------------------------- */
+  eleventyConfig.addFilter("activeNav", (nav, url) => {
+    if (!nav || !url) return null;
+
+    const exact = nav.find((i) => i.url === url);
+    if (exact) return exact;
+
+    const viaChild = nav.find((i) =>
+      (i.children || []).some((c) => c.url && url.startsWith(c.url))
+    );
+    if (viaChild) return viaChild;
+
+    const byPrefix = nav
+      .filter((i) => i.url && i.url !== "/" && url.startsWith(i.url))
+      .sort((a, b) => b.url.length - a.url.length)[0];
+
+    return byPrefix || null;
   });
 
   // Take the first N of a list.

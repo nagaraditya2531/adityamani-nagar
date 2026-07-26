@@ -11,7 +11,7 @@
 
 backend:
   name: github
-  repo: nagaraditya2531/nagaraditya2531.github.io   # change if you rename the repo
+  repo: nagaraditya2531/adityamani-nagar   # change if you rename the repo
   branch: main
 
 # Where the CMS puts anything you upload.
@@ -29,8 +29,8 @@ collections:
     slug: "{{slug}}"
     summary: "{{year}} — {{title}}"
     fields:
-      - { name: title,   label: Title, widget: string }
-      - { name: date,    label: Date,  widget: datetime }
+      - { name: title,   label: Title, widget: string, required: false }
+      - { name: date,    label: Date,  widget: datetime, required: false }
       - { name: year,    label: Year,  widget: number, value_type: int, required: false }
       - { name: authors, label: Authors, widget: string, required: false, hint: "As they appear on the paper" }
       - { name: journal, label: Journal, widget: string, required: false }
@@ -39,6 +39,7 @@ collections:
       - { name: image,   label: "Thumbnail (graphical abstract, figure)", widget: image, required: false }
       - { name: data_url, label: Data link, widget: string, required: false }
       - name: visibility
+        required: false
         label: Visibility
         widget: select
         default: public
@@ -64,17 +65,77 @@ collections:
 
   # --------------------------------------------------------------- writing
   - name: writing
-    label: Writing
+    label: "Notebook — essays"
     label_singular: Essay
     folder: "src/content/writing"
     create: true
     slug: "{{slug}}"
     fields:
-      - { name: title,   label: Title, widget: string }
-      - { name: date,    label: Date, widget: datetime }
+      - { name: title,   label: Title, widget: string, required: false }
+      - { name: date,    label: Date, widget: datetime, required: false }
       - { name: summary, label: One-line summary, widget: string, required: false }
       - { name: image,   label: Thumbnail, widget: image, required: false }
       - name: visibility
+        label: Visibility
+        widget: select
+        required: false
+        default: public
+        options:
+          - { label: "Public", value: public }
+          - { label: "Unlisted", value: unlisted }
+          - { label: "Draft", value: draft }
+      - { name: body, label: Text, widget: markdown, required: false }
+
+  # --------------------------------------------------------------- reading
+  - name: reading
+    label: "Notebook — reading"
+    label_singular: Reading note
+    folder: "src/content/reading"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { name: title,  label: Title, widget: string, required: false }
+      - { name: author, label: Author, widget: string, required: false }
+      - { name: date,   label: Finished, widget: datetime, required: false }
+      - name: kind
+        label: Kind
+        widget: select
+        required: false
+        options: [book, paper]
+        default: book
+      - { name: cover, label: "Cover image", widget: image, required: false }
+      - { name: note, label: "One honest line", widget: text, required: false }
+      - name: visibility
+        required: false
+        label: Visibility
+        widget: select
+        default: public
+        options:
+          - { label: "Public", value: public }
+          - { label: "Draft", value: draft }
+
+  # ----------------------------------------------------------- conferences
+  - name: conferences
+    label: Conferences
+    label_singular: Conference
+    folder: "src/content/conferences"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { name: title,   label: "Talk or poster title", widget: string, required: false }
+      - { name: event,   label: "Conference name", widget: string, required: false }
+      - { name: where,   label: "City, Country", widget: string, required: false }
+      - { name: date,    label: Date, widget: datetime, required: false }
+      - name: role
+        label: What you did
+        widget: select
+        required: false
+        options: [Talk, Poster, Attended, Invited talk, Workshop]
+        default: Poster
+      - { name: photo,   label: Photo, widget: image, required: false }
+      - { name: summary, label: One-line summary, widget: string, required: false }
+      - name: visibility
+        required: false
         label: Visibility
         widget: select
         default: public
@@ -82,50 +143,25 @@ collections:
           - { label: "Public", value: public }
           - { label: "Unlisted", value: unlisted }
           - { label: "Draft", value: draft }
-      - { name: body, label: Text, widget: markdown }
+      - { name: body, label: Notes, widget: markdown, required: false }
 
-  # --------------------------------------------------------------- reading
-  - name: reading
-    label: Reading
-    label_singular: Book or paper
-    folder: "src/content/reading"
+  # --------------------------------------------------------------- detours
+  - name: detours
+    label: Detours
+    label_singular: Detour
+    folder: "src/content/detours"
     create: true
     slug: "{{slug}}"
     fields:
-      - { name: title,  label: Title, widget: string }
-      - { name: author, label: Author, widget: string }
-      - { name: date,   label: Finished, widget: datetime }
-      - name: kind
-        label: Kind
-        widget: select
-        options: [book, paper]
-        default: book
-      - { name: cover, label: "Cover image", widget: image, required: false }
-      - { name: note, label: "One honest line", widget: text }
-      - name: visibility
-        label: Visibility
-        widget: select
-        default: public
-        options:
-          - { label: "Public", value: public }
-          - { label: "Draft", value: draft }
-
-  # ---------------------------------------------------------------- places
-  - name: places
-    label: Places
-    label_singular: Trip
-    folder: "src/content/places"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - { name: title,   label: Title, widget: string }
-      - { name: where,   label: "City, Country", widget: string }
-      - { name: date,    label: Date, widget: datetime }
+      - { name: title,   label: Title, widget: string, hint: "Not just the place name", required: false }
+      - { name: where,   label: "City, Country", widget: string, required: false }
+      - { name: date,    label: Date, widget: datetime, required: false }
       - { name: photo,   label: Photo, widget: image, required: false }
       - { name: summary, label: One-line summary, widget: string, required: false }
       - name: visibility
         label: Visibility
         widget: select
+        required: false
         default: public
         options:
           - { label: "Public", value: public }
@@ -141,18 +177,20 @@ collections:
     create: true
     slug: "{{slug}}"
     fields:
-      - { name: title,   label: Name, widget: string }
-      - { name: started, label: Start year, widget: number, value_type: int }
-      - { name: span,    label: "Shown as", widget: string, hint: "e.g. 2024 — present" }
+      - { name: title,   label: Name, widget: string, required: false }
+      - { name: started, label: Start year, widget: number, value_type: int, required: false }
+      - { name: span,    label: "Shown as", widget: string, hint: "e.g. 2024 — present", required: false }
       - name: status
         label: Status
         widget: select
+        required: false
         options: [active, past]
         default: active
-      - { name: summary, label: Summary, widget: text }
+      - { name: summary, label: Summary, widget: text, required: false }
       - { name: meta,    label: "Small print", widget: string, required: false }
       - { name: image,   label: Image, widget: image, required: false }
       - name: visibility
+        required: false
         label: Visibility
         widget: select
         default: public
@@ -168,73 +206,106 @@ collections:
         label: "Site — name, menu, links"
         file: "src/_data/site.json"
         fields:
-          - { name: name,     label: "Your full name (used by search engines)", widget: string }
+          - { name: name,     label: "Your full name (used by search engines)", widget: string, required: false }
           - { name: shortName, label: "First name", widget: string, required: false }
-          - { name: tagline,  label: Tagline, widget: string }
+          - name: alternateNames
+            label: "Other spellings of your name"
+            widget: list
+            field: { name: alt, label: Spelling, widget: string, required: false }
+            required: false
+            hint: "How your name appears on papers and profiles. Tells Google these are all you."
+
+          - { name: tagline,  label: Tagline, widget: string, required: false }
           - { name: jobTitle, label: "Job title (e.g. Chemist)", widget: string, required: false }
           - { name: affiliation, label: Institution, widget: string, required: false }
-          - { name: location, label: Location, widget: string }
-          - { name: url, label: "Site address (no trailing slash)", widget: string, hint: "Change this when you attach a domain" }
-          - { name: email,    label: Email, widget: string }
-          - { name: portrait, label: Portrait photo, widget: image }
-          - { name: version,  label: Version number, widget: string }
+          - { name: location, label: Location, widget: string, required: false }
+          - { name: url, label: "Site address (no trailing slash)", widget: string, hint: "Change this when you attach a domain", required: false }
+          - { name: email,    label: Email, widget: string, required: false }
+          - { name: portrait, label: Portrait photo, widget: image, required: false }
+          - { name: version,  label: Version number, widget: string, required: false }
           - name: nav
+            required: false
             label: Menu
             widget: list
+            hint: "The header and the footer both read this list."
             fields:
-              - { name: label, label: Label, widget: string }
-              - { name: url,   label: URL, widget: string }
+              - { name: label, label: Label, widget: string, required: false }
+              - { name: url,   label: URL, widget: string, required: false }
+              - name: subnav
+                required: false
+                label: "Show a sub-menu for this section?"
+                widget: boolean
+                default: false
+                hint: "Off = nothing changes. On = the items below appear as a second row."
+              - name: children
+                required: false
+                label: "Sub-menu items"
+                widget: list
+                hint: "Add as many as you like. Ignored unless the switch above is on."
+                fields:
+                  - { name: label, label: Label, widget: string, required: false }
+                  - { name: url,   label: URL, widget: string, required: false }
           - name: links
+            required: false
             label: Profile links
             widget: list
             fields:
-              - { name: label, label: Label, widget: string }
-              - { name: url,   label: URL, widget: string }
+              - { name: label, label: Label, widget: string, required: false }
+              - { name: url,   label: URL, widget: string, required: false }
           - name: facts
+            required: false
             label: About-page facts
             widget: list
             fields:
-              - { name: key,   label: Label, widget: string }
-              - { name: value, label: Value, widget: string }
+              - { name: key,   label: Label, widget: string, required: false }
+              - { name: value, label: Value, widget: string, required: false }
 
       - name: now
+        required: false
         label: "Now block"
         file: "src/_data/now.yaml"
         fields:
           - name: show
+            required: false
             label: "Show the Now block on the home page?"
             widget: boolean
             default: true
           - { name: updated, label: "Updated (e.g. July 2026)", widget: string, required: false }
           - name: lines
+            required: false
             label: Lines
             widget: list
             fields:
-              - { name: label, label: Label, widget: string }
+              - { name: label, label: Label, widget: string, required: false }
               - { name: text,  label: Text, widget: string, required: false }
 
       - name: about
+        required: false
         label: "About page"
         file: "src/_data/about.yaml"
         fields:
-          - { name: heading, label: Heading, widget: string }
+          - { name: heading, label: Heading, widget: string, required: false }
           - name: paragraphs
+            required: false
             label: Paragraphs
             widget: list
-            field: { name: paragraph, label: Paragraph, widget: text }
+            field: { name: paragraph, label: Paragraph, widget: text, required: false }
             hint: "Add, remove or reorder freely."
-          - { name: contact_heading, label: "Contact heading", widget: string }
+          - { name: contact_heading, label: "Contact heading", widget: string, required: false }
 
       - name: questions
+        required: false
         label: "Open questions"
         file: "src/_data/questions.yaml"
         fields:
           - name: questions
+            required: false
             label: Questions
             widget: list
             fields:
-              - { name: text, label: Question, widget: text }
+              - { name: text, label: Question, widget: text, required: false }
               - name: state
+                required: false
                 label: State
                 widget: select
                 options: [open, active, closed]

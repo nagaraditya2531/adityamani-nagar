@@ -65,13 +65,14 @@
 <body>
 <a class="skip" href="#main">Skip to content</a>
 
+{% set active = site.nav | activeNav(page.url) %}
 <header class="topbar">
   <div class="wrap">
     <a class="brand" href="/">{{ site.name }}</a>
     <div class="nav-and-toggle">
       <nav class="topnav" aria-label="Main">
         {% for item in site.nav %}
-        <a href="{{ item.url }}"{% if item.url == page.url %} aria-current="page"{% endif %}>{{ item.label }}</a>
+        <a href="{{ item.url }}"{% if item.url == page.url %} aria-current="page"{% elif active and active.url == item.url %} data-section="true"{% endif %}>{{ item.label }}</a>
         {% endfor %}
       </nav>
       <button class="themetoggle" id="themeToggle" type="button" aria-label="Switch between light and dark">
@@ -85,6 +86,23 @@
       </button>
     </div>
   </div>
+
+  {# ---- Sub-menu. Appears only when the section it belongs to has
+         "Show a sub-menu" ticked in Settings -> Site -> Menu, and has
+         at least one sub-item. Otherwise nothing renders at all. ---- #}
+  {% if active and active.subnav and active.children and active.children.length %}
+  <div class="subbar">
+    <div class="wrap">
+      <nav class="subnav" aria-label="{{ active.label }} sections">
+        {% for child in active.children %}
+        {% if child.label %}
+        <a href="{{ child.url }}"{% if child.url == page.url %} aria-current="page"{% endif %}>{{ child.label }}</a>
+        {% endif %}
+        {% endfor %}
+      </nav>
+    </div>
+  </div>
+  {% endif %}
 </header>
 
 <main id="main">

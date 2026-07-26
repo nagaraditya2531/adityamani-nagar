@@ -16,7 +16,7 @@ description: Researcher and writer. Research, publications, essays, reading and 
         </p>
       </div>
       <figure class="portrait rise">
-        <img src="{{ site.portrait }}" alt="{{ site.name }}, {{ site.jobTitle }} at {{ site.affiliation }}" width="480" height="600" fetchpriority="high">
+        <img src="{{ site.portrait }}" alt="{{ site.name }}, {{ site.jobTitle }} at {{ site.affiliation }}" fetchpriority="high">
       </figure>
     </div>
 
@@ -49,13 +49,13 @@ description: Researcher and writer. Research, publications, essays, reading and 
     <div class="feed rise">
       {% for item in collections.everything | limit(5) %}
       {# Reading entries have no page of their own, so they point at the list. #}
-      {% set target = item.url if item.url else '/reading/' %}
-      <article class="item" data-kind="{% if 'reading' in item.filePathStem or 'places' in item.filePathStem %}life{% else %}work{% endif %}">
+      {% set target = item.url if item.url else '/notebook/' %}
+      <article class="item" data-kind="{% if 'reading' in item.filePathStem or 'detours' in item.filePathStem %}life{% else %}work{% endif %}">
         <a class="item-link{% if item.data.image or item.data.cover or item.data.photo %} has-thumb{% endif %}" href="{{ target }}">
           {% set thumb = item.data.image or item.data.cover or item.data.photo %}
-          {% if thumb %}<img class="item-thumb" src="{{ thumb }}" alt="{{ item.data.title }} — {{ site.name }}" loading="lazy" decoding="async">{% endif %}
-          <span class="item-type">{% if 'papers' in item.filePathStem %}Paper{% elif 'writing' in item.filePathStem %}Essay{% elif 'places' in item.filePathStem %}Places{% else %}Reading{% endif %}</span>
-          <span class="item-title">{{ item.data.title }}</span>
+          {% if thumb %}<img class="item-thumb" src="{{ thumb }}" alt="{{ item.data.title or "Untitled" }} — {{ site.name }}" loading="lazy" decoding="async">{% endif %}
+          <span class="item-type">{% if 'papers' in item.filePathStem %}Paper{% elif 'writing' in item.filePathStem %}Essay{% elif 'conferences' in item.filePathStem %}Conference{% elif 'detours' in item.filePathStem %}Detour{% else %}Reading{% endif %}</span>
+          <span class="item-title">{{ (item.data.title or "Untitled") | chem | safe }}</span>
           <span class="item-meta">{{ item.data.journal or item.data.where or item.data.author or "" }} · {{ item.data.date | monthYear }}</span>
           <span class="item-arrow" aria-hidden="true">→</span>
         </a>
@@ -90,8 +90,8 @@ description: Researcher and writer. Research, publications, essays, reading and 
       <p>Three or four sentences about what you do when you're not working. Be specific and
          slightly odd — the reader has met a hundred people who "enjoy travelling and reading."</p>
       <div class="elsewhere">
-        <a href="/reading/">What I'm reading</a>
-        <a href="/places/">Where I've been</a>
+        <a href="/notebook/">What I'm reading</a>
+        <a href="/detours/">Where I've been</a>
         <a href="/about/">Get in touch</a>
       </div>
     </div>

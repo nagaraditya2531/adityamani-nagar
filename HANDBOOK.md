@@ -21,6 +21,7 @@ match, trust the code over this document — then update this document.
 5a. [The portrait photo is cropped](#5a-the-portrait-photo-is-cropped)
 6. [Changing spacing and sizes](#6-changing-spacing-and-sizes)
 7. [Adding a whole new section](#7-adding-a-whole-new-section) ← worked example
+7a. [Subscripts and superscripts](#7a-subscripts-and-superscripts-chemical-formulae)
 8. [Adding a field to something that exists](#8-adding-a-field-to-something-that-exists)
 9. [Changing the menu](#9-changing-the-menu)
 10. [Public, unlisted, draft](#10-public-unlisted-draft)
@@ -430,6 +431,44 @@ the sitemap, and is editable from `/admin/`.
 
 ---
 
+## 7a. Subscripts and superscripts (chemical formulae)
+
+CMS fields are plain text, so `Nd3+` stays flat. Two ways to fix it.
+
+**1. Unicode characters — works everywhere, nothing to learn.**
+Paste them straight into any field, including page titles:
+
+```
+subscripts    ₀ ₁ ₂ ₃ ₄ ₅ ₆ ₇ ₈ ₉ ₊ ₋
+superscripts  ⁰ ¹ ² ³ ⁴ ⁵ ⁶ ⁷ ⁸ ⁹ ⁺ ⁻
+examples      H₂O    Nd³⁺    10⁻⁶ M    4f³
+```
+
+Best choice for titles, because it also appears correctly in Google results
+and browser tabs, where HTML formatting can't reach.
+
+**2. Notation, for anything longer.** Type these in any field and they render
+properly on the page:
+
+```
+H~2~O        →  H₂O        (tildes = subscript)
+Nd^3+^       →  Nd³⁺       (carets = superscript)
+Ce^4+^/Ce^3+^ couple
+10^-6^ M
+```
+
+This works in titles, abstracts, the five question boxes, summaries, reading
+notes and research descriptions. It's the `chem` filter in
+`eleventy.config.js`, applied in the templates as `{{ title | chem | safe }}`.
+
+**In the Markdown body of an essay or trip**, write plain HTML instead —
+`H<sub>2</sub>O` — which Markdown passes straight through.
+
+**If you add a new field and it needs formulae**, put `| chem | safe` after it
+in the template. Without it, the notation shows literally.
+
+---
+
 ## 8. Adding a field to something that exists
 
 Say you want a "Conference" field on papers.
@@ -449,6 +488,35 @@ without the guard they'd render an empty heading.
 ---
 
 ## 9. Changing the menu
+
+**CMS → Settings → Site → Menu.** The header and footer both read this one list,
+so they can never disagree.
+
+### Sub-menus
+
+Each menu item can carry its own second row of links. Entirely optional — leave
+it off and the site looks exactly as it does now.
+
+To turn one on:
+
+1. Settings → Site → Menu → open the item (say, Research)
+2. Tick **"Show a sub-menu for this section?"**
+3. Under **Sub-menu items**, add as many rows as you want — label and URL each
+
+The sub-menu appears beneath the main navigation on that section's page and on
+any page underneath it. Elsewhere it doesn't render at all.
+
+**How the site decides you're "in" a section:** an exact URL match first, then a
+match on one of the sub-items, then the longest matching URL prefix. So
+`/work/some-paper/` counts as being inside `/work/`, and the parent stays lit.
+
+**This is the answer to running out of menu space.** Rather than adding an
+eighth top-level item in 2032, give an existing one a sub-menu. The top row
+stays at seven forever; everything grows underneath.
+
+Sub-items can point anywhere — a page, or an anchor like `/research/#questions`.
+
+### Everything else
 
 **CMS → Settings → Site → Menu.** Nothing else. The header and footer both read
 from the same list in `src/_data/site.json`, so they can never disagree.

@@ -1,0 +1,40 @@
+---
+layout: base.njk
+permalink: /conferences/
+title: Conferences
+description: Talks, posters and meetings.
+---
+<div class="wrap">
+  <div class="pagehead rise">
+    <span class="mono">Conferences</span>
+    <h1>Where the work has been presented.</h1>
+    <p>Talks, posters and meetings — and occasionally what changed because of them.</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="wrap">
+    <div class="rise">
+      {% for group in collections.conferences | byYear %}
+      <section class="year">
+        <div class="year-inner">
+          <h3 class="year-mark">{{ group.year }}</h3>
+          <div>
+            {% for item in group.items %}
+            <article class="item">
+              <a class="item-link{% if item.data.photo %} has-thumb{% endif %}" href="{{ item.url }}">
+                {% if item.data.photo %}<img class="item-thumb" src="{{ item.data.photo }}" alt="{{ item.data.title or "Untitled" }} — {{ site.name }}" loading="lazy" decoding="async">{% endif %}
+                <span class="item-type">{{ item.data.role or "Attended" }}</span>
+                <span class="item-title">{{ (item.data.title or "Untitled") | chem | safe }}</span>
+                <span class="item-meta">{% if item.data.event %}{{ item.data.event }} · {% endif %}{{ item.data.where }}</span>
+                <span class="item-arrow" aria-hidden="true">→</span>
+              </a>
+            </article>
+            {% endfor %}
+          </div>
+        </div>
+      </section>
+      {% endfor %}
+    </div>
+  </div>
+</section>

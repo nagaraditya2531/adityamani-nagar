@@ -19,7 +19,7 @@ eleventyExcludeFromCollections: true
 {%- elif img %}
     <image:image>
       <image:loc>{{ site.url }}{{ img }}</image:loc>
-      <image:title>{{ item.data.title }} — {{ site.name }}</image:title>
+      <image:title>{{ item.data.title or "Untitled" }} — {{ site.name }}</image:title>
     </image:image>
 {%- endif %}
   </url>
