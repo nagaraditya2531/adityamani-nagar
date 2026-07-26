@@ -111,6 +111,25 @@ module.exports = function (eleventyConfig) {
   // Take the first N of a list.
   eleventyConfig.addFilter("limit", (arr, n) => (arr || []).slice(0, n));
 
+  // Turn a date into "26 July 2026".
+  eleventyConfig.addFilter("fullDate", (value) => {
+    const d = toDate(value);
+    return d
+      ? d.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })
+      : "";
+  });
+
+  // 2026-07-26 — the format search engines want in a sitemap.
+  eleventyConfig.addFilter("isoDate", (value) => {
+    const d = toDate(value);
+    return d ? d.toISOString().slice(0, 10) : "";
+  });
+
+  /* When the site was last built. Because every content change triggers a
+     rebuild, this is the same thing as "when the site last changed".
+     Available in any template as {{ buildTime }}. */
+  eleventyConfig.addGlobalData("buildTime", () => new Date());
+
   /* --- 5. Where things live -------------------------------------------- */
   return {
     dir: {
