@@ -22,8 +22,10 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "src/js": "js" });
   eleventyConfig.addPassthroughCopy({ "src/admin": "admin" });
 
-  // The CMS lives at /admin. Eleventy must not try to render it.
-  eleventyConfig.ignores.add("src/admin/**");
+  // Note: we do NOT ignore src/admin here. Ignoring it can also cancel the
+  // passthrough copy above, which makes /admin/ 404. Instead, "html" is left
+  // out of templateFormats at the bottom of this file, so Eleventy never
+  // tries to render admin/index.html as a template. It just gets copied.
 
   /* --- 2. Visibility ---------------------------------------------------
      Every piece of content has a `visibility` field:
@@ -102,6 +104,6 @@ module.exports = function (eleventyConfig) {
     },
     markdownTemplateEngine: "njk",
     htmlTemplateEngine: "njk",
-    templateFormats: ["njk", "md", "html"]
+    templateFormats: ["njk", "md"]
   };
 };
