@@ -13,7 +13,7 @@
     {
       "label": "Home",
       "url": "/",
-      "subnav": true,
+      "subnav": false,
       "children": [
         {
           "label": "fun",
@@ -23,7 +23,46 @@
     },
     {
       "label": "Research",
-      "url": "/research/"
+      "url": "/research/",
+      "subnav": true,
+      "children": [
+        {
+          "label": "conf",
+          "url": ""
+        },
+        {
+          "label": "comp",
+          "url": ""
+        },
+        {
+          "label": "syn",
+          "url": ""
+        },
+        {
+          "label": "complex",
+          "url": ""
+        },
+        {
+          "label": "extarct6ion",
+          "url": ""
+        },
+        {
+          "label": "radio",
+          "url": ""
+        },
+        {
+          "label": "bio",
+          "url": ""
+        },
+        {
+          "label": "arts",
+          "url": ""
+        },
+        {
+          "label": "literature",
+          "url": ""
+        }
+      ]
     },
     {
       "label": "Publications",
