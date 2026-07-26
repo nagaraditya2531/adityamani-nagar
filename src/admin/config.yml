@@ -11,7 +11,7 @@
 
 backend:
   name: github
-  repo: nagaraditya2531/nagaraditya2531.github.io   # change if you rename the repo
+  repo: nagaraditya2531/adityamani-nagar   # change if you rename the repo
   branch: main
 
 # Where the CMS puts anything you upload.
@@ -31,8 +31,8 @@ collections:
     fields:
       - { name: title,   label: Title, widget: string }
       - { name: date,    label: Date,  widget: datetime }
-      - { name: year,    label: Year,  widget: number, value_type: int }
-      - { name: authors, label: Authors, widget: string, hint: "As they appear on the paper" }
+      - { name: year,    label: Year,  widget: number, value_type: int, required: false }
+      - { name: authors, label: Authors, widget: string, required: false, hint: "As they appear on the paper" }
       - { name: journal, label: Journal, widget: string, required: false }
       - { name: doi,     label: DOI, widget: string, required: false, hint: "Just the 10.xxxx/... part" }
       - { name: pdf,     label: PDF, widget: file, required: false }
@@ -45,11 +45,19 @@ collections:
           - { label: "Public — shown everywhere", value: public }
           - { label: "Unlisted — has a link, not in any list", value: unlisted }
           - { label: "Draft — not on the site at all", value: draft }
-      - { name: problem,      label: "The problem", widget: text }
-      - { name: mattered,     label: "Why it mattered", widget: text }
-      - { name: found,        label: "What we found", widget: text }
-      - { name: contribution, label: "My contribution", widget: text }
-      - { name: next,         label: "What's next", widget: text }
+      # ---- Abstract: use this when you don't want to write the long version ----
+      - name: abstract
+        label: Abstract
+        widget: text
+        required: false
+        hint: "Paste the published abstract. Fine on its own — everything below is optional."
+
+      # ---- The five questions. All optional. Fill in as many as you feel like. ----
+      - { name: problem,      label: "The problem",     widget: text, required: false }
+      - { name: mattered,     label: "Why it mattered", widget: text, required: false }
+      - { name: found,        label: "What we found",   widget: text, required: false }
+      - { name: contribution, label: "My contribution", widget: text, required: false }
+      - { name: next,         label: "What's next",     widget: text, required: false }
       - { name: bibtex,       label: BibTeX, widget: text, required: false }
       - { name: body,         label: "Anything else", widget: markdown, required: false }
 
