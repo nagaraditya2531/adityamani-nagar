@@ -23,7 +23,7 @@ description: Papers, in order.
             {% for item in group.items %}
             <article class="item">
               <a class="item-link{% if item.data.image %} has-thumb{% endif %}" href="{{ item.url }}">
-                {% if item.data.image %}<img class="item-thumb" src="{{ item.data.image }}" alt="">{% endif %}
+                {% if item.data.image %}<img class="item-thumb" src="{{ item.data.image }}" alt="Figure from {{ item.data.title }} — {{ site.name }}" loading="lazy" decoding="async">{% endif %}
                 <span class="item-type">Paper</span>
                 <span class="item-title">{{ item.data.title }}</span>
                 <span class="item-meta">{{ item.data.journal }}{% if item.data.year %} · {{ item.data.year }}{% endif %}</span>
