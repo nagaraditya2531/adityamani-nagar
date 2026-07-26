@@ -12,7 +12,14 @@
   "nav": [
     {
       "label": "Home",
-      "url": "/"
+      "url": "/",
+      "subnav": true,
+      "children": [
+        {
+          "label": "fun",
+          "url": ""
+        }
+      ]
     },
     {
       "label": "Research",
