@@ -1,141 +1,99 @@
-{% from "icons.njk" import icon %}
-{# ===========================================================================
-   base.njk — the shell every page is poured into.
-
-   This file exists ONCE. The navigation, the fonts, the footer: all here.
-   Change the nav in src/_data/site.json and every page updates.
-
-   {{ something }}   prints a value
-   {% if %} {% for %}  logic — everything else is ordinary HTML
-   =========================================================================== #}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-{# --- Title: your full name appears on every page, which is what a name
-       search needs. Home page leads with the name and role. --- #}
-<title>{% if title %}{{ title }} — {{ site.name }}{% else %}{{ site.name }} — {{ site.jobTitle }}{% endif %}</title>
-<meta name="description" content="{{ description or site.tagline }}">
-<link rel="canonical" href="{{ site.url }}{{ page.url }}">
-
-{# --- Link previews on social, WhatsApp, Slack --- #}
-<meta property="og:type" content="{% if page.url == '/' %}profile{% else %}article{% endif %}">
-<meta property="og:site_name" content="{{ site.name }}">
-<meta property="og:title" content="{% if title %}{{ title }} — {{ site.name }}{% else %}{{ site.name }}{% endif %}">
-<meta property="og:description" content="{{ description or site.tagline }}">
-<meta property="og:url" content="{{ site.url }}{{ page.url }}">
-{% if image or site.portrait %}<meta property="og:image" content="{{ site.url }}{{ image or site.portrait }}">{% endif %}
-<meta name="twitter:card" content="summary_large_image">
-
-{# --- Structured data. This is how Google learns that this site IS a person,
-       and connects it to your ORCID and Scholar profiles. --- #}
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "{{ site.name }}",
-  "alternateName": [{% for n in site.alternateNames %}"{{ n }}"{% if not loop.last %}, {% endif %}{% endfor %}],
-  "url": "{{ site.url }}/",
-  "jobTitle": "{{ site.jobTitle }}",
-  "email": "mailto:{{ site.email }}",
-  "image": "{{ site.url }}{{ site.portrait }}",
-  "affiliation": { "@type": "Organization", "name": "{{ site.affiliation }}" },
-  "sameAs": [{% for l in site.links %}{% if l.url and l.url != "#" %}"{{ l.url }}"{% if not loop.last %}, {% endif %}{% endif %}{% endfor %}]
-}
-</script>
-<script>
-/* Sets the theme before anything is drawn, so the page never flashes white
-   then dark. Reads your saved choice, otherwise follows your device setting. */
-(function () {
-  try {
-    var saved = localStorage.getItem("theme");
-    var theme = saved || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
-    document.documentElement.setAttribute("data-theme", theme);
-  } catch (e) {
-    document.documentElement.setAttribute("data-theme", "light");
-  }
-})();
-</script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&family=Spectral:ital,wght@0,300;0,500;0,600;1,300;1,500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css">
-</head>
-<body>
-<a class="skip" href="#main">Skip to content</a>
-
-<header class="topbar">
+---
+layout: base.njk
+permalink: /
+description: Researcher and writer. Research, publications, essays, reading and places.
+---
+<section class="hero">
   <div class="wrap">
-    <a class="brand" href="/">{{ site.name }}</a>
-    <div class="nav-and-toggle">
-      <nav class="topnav" aria-label="Main">
-        {% for item in site.nav %}
-        <a href="{{ item.url }}"{% if item.url == page.url %} aria-current="page"{% endif %}>{{ item.label }}</a>
-        {% endfor %}
-      </nav>
-      <button class="themetoggle" id="themeToggle" type="button" aria-label="Switch between light and dark">
-        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-          <circle cx="12" cy="12" r="4.2"/>
-          <path d="M12 2.2v2.1M12 19.7v2.1M4.1 4.1l1.5 1.5M18.4 18.4l1.5 1.5M2.2 12h2.1M19.7 12h2.1M4.1 19.9l1.5-1.5M18.4 5.6l1.5-1.5"/>
-        </svg>
-        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-          <path d="M20 13.4A8.2 8.2 0 1 1 10.6 4a6.6 6.6 0 0 0 9.4 9.4z"/>
-        </svg>
-      </button>
+    <div class="intro">
+      <div>
+        <span class="hero-eyebrow mono rise">{{ site.tagline }} · {{ site.location }}</span>
+        <h1 class="rise">I'm {{ site.name.split(" ")[0] }}. I ask questions for a living, and write down the ones I can't answer yet.</h1>
+        <p class="hero-lede rise">
+          Right now that means chemistry — <strong>separation, coordination, the behaviour of
+          things in solution</strong>. It may not always. What doesn't change is the habit of
+          keeping a record.
+        </p>
+      </div>
+      <figure class="portrait rise">
+        <img src="{{ site.portrait }}" alt="{{ site.name }}">
+      </figure>
     </div>
-  </div>
-</header>
 
-<main id="main">
-  {{ content | safe }}
-</main>
-
-<footer>
-  <div class="wrap">
-
-    <div class="footgrid">
-
-      <div class="footcol footcol--wide">
-        <p class="footname">{{ site.name }}</p>
-        {% if site.tagline %}<p class="foottag">{{ site.tagline }}{% if site.location %} · {{ site.location }}{% endif %}</p>{% endif %}
-        {% if site.email %}
-        <a class="footmail" href="mailto:{{ site.email }}">{{ site.email }}</a>
-        {% endif %}
+    {# --- Now block. Hidden entirely if show is false or there are no lines. --- #}
+    {% if now.show and now.lines and now.lines.length %}
+    <div class="now rise">
+      <div class="now-head">
+        <span class="mono">Now</span>
+        {% if now.updated %}<span class="mono">Updated {{ now.updated }}</span>{% endif %}
       </div>
-
-      <div class="footcol">
-        <span class="mono foothead">Pages</span>
-        <ul class="footlist footlist--pages">
-          {% for item in site.nav %}
-          <li><a href="{{ item.url }}">{{ item.label }}</a></li>
-          {% endfor %}
-        </ul>
-      </div>
-
-      <div class="footcol">
-        <span class="mono foothead">Elsewhere</span>
-        <ul class="iconrow">
-          {% for l in site.links %}
-          {% if l.url and l.url != "#" %}
-          <li><a href="{{ l.url }}" aria-label="{{ l.label }}" title="{{ l.label }}">{{ icon(l.label) }}</a></li>
+      <ul class="now-list">
+        {% for line in now.lines %}
+          {% if line.text %}
+          <li><span class="k">{{ line.label }}</span><span>{{ line.text }}</span></li>
           {% endif %}
-          {% endfor %}
-        </ul>
-      </div>
-
+        {% endfor %}
+      </ul>
     </div>
-
-    <div class="footbar">
-      {# The full stop links to the manifesto — unlisted, findable by the curious. #}
-      <span class="mono">Atlas v{{ site.version }} · a living record of curiosity<a class="quiet" href="/manifesto/" aria-label="Manifesto">.</a></span>
-      <span class="mono">Last updated {{ buildTime | fullDate }}</span>
-      <span class="mono">© {{ site.name }}</span>
-    </div>
-
+    {% endif %}
   </div>
-</footer>
+</section>
 
-<script src="/js/site.js"></script>
-</body>
-</html>
+{# --- One mixed feed: work and life in the same list --- #}
+<section class="section">
+  <div class="wrap">
+    <div class="section-head rise">
+      <h2>Recently</h2>
+      <a class="more" href="/publications/">Full record →</a>
+    </div>
+    <div class="feed rise">
+      {% for item in collections.everything | limit(5) %}
+      {# Reading entries have no page of their own, so they point at the list. #}
+      {% set target = item.url if item.url else '/reading/' %}
+      <article class="item" data-kind="{% if 'reading' in item.filePathStem or 'places' in item.filePathStem %}life{% else %}work{% endif %}">
+        <a class="item-link{% if item.data.image or item.data.cover or item.data.photo %} has-thumb{% endif %}" href="{{ target }}">
+          {% set thumb = item.data.image or item.data.cover or item.data.photo %}
+          {% if thumb %}<img class="item-thumb" src="{{ thumb }}" alt="">{% endif %}
+          <span class="item-type">{% if 'papers' in item.filePathStem %}Paper{% elif 'writing' in item.filePathStem %}Essay{% elif 'places' in item.filePathStem %}Places{% else %}Reading{% endif %}</span>
+          <span class="item-title">{{ item.data.title }}</span>
+          <span class="item-meta">{{ item.data.journal or item.data.where or item.data.author or "" }} · {{ item.data.date | monthYear }}</span>
+          <span class="item-arrow" aria-hidden="true">→</span>
+        </a>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{# --- Open questions, from src/_data/questions.yaml --- #}
+<section class="section">
+  <div class="wrap">
+    <div class="section-head rise">
+      <h2>Open questions</h2>
+      <a class="more" href="/research/#questions">All questions →</a>
+    </div>
+    <ul class="qlist rise">
+      {% for q in questions.questions | limit(2) %}
+      <li>
+        <span class="q">{{ q.text }}</span>
+        <span class="q-meta"><span class="pill" data-state="{{ q.state }}">{% if q.state == 'open' %}Open{% elif q.state == 'active' %}In progress{% else %}Closed{% endif %}</span></span>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head rise"><h2>Away from the bench</h2></div>
+    <div class="rise" style="max-width:56ch">
+      <p>Three or four sentences about what you do when you're not working. Be specific and
+         slightly odd — the reader has met a hundred people who "enjoy travelling and reading."</p>
+      <div class="elsewhere">
+        <a href="/reading/">What I'm reading</a>
+        <a href="/places/">Where I've been</a>
+        <a href="/about/">Get in touch</a>
+      </div>
+    </div>
+  </div>
+</section>
