@@ -4,9 +4,9 @@
   "tagline": "Researcher · Writer",
   "jobTitle": "",
   "affiliation": "",
-  "location": "Mumbai",
-  "url": "nagaraditya2531.github.io/",
-  "email": "you@example.com",
+  "location": "Manchester, UK",
+  "url": "nagaraditya2531.github.io",
+  "email": "nagaraditya2531@gmail.com",
   "portrait": "/assets/uploads/adityamani-nagar.jpg",
   "version": "2.0",
   "nav": [
@@ -46,29 +46,29 @@
     },
     {
       "label": "ORCID",
-      "url": "#"
+      "url": "https://orcid.org/0009-0005-8472-8262"
     },
     {
       "label": "Google Scholar",
-      "url": "#"
+      "url": "https://scholar.google.com/citations?hl=en&user=E9gaR0oAAAAJ"
     },
     {
       "label": "LinkedIn",
-      "url": "#"
+      "url": "https://www.linkedin.com/in/adityamani-nagar-0146b01b3/"
     }
   ],
   "facts": [
     {
       "key": "Position",
-      "value": "stu· Institution"
+      "value": "PGR· The University of Manchester"
     },
     {
       "key": "Based",
-      "value": "mumbai, Country"
+      "value": "Manchester, United Kingdom"
     },
     {
       "key": "ORCID",
-      "value": "0000-0000-0000-0000"
+      "value": "0009-0005-8472-8262"
     },
     {
       "key": "CV",
