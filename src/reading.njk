@@ -16,7 +16,8 @@ description: Books and papers, with notes.
   <div class="wrap">
     <ul class="reads rise">
       {% for item in collections.reading %}
-      <li>
+      <li class="{% if item.data.cover %}has-cover{% endif %}">
+        {% if item.data.cover %}<img class="read-cover" src="{{ item.data.cover }}" alt="">{% endif %}
         <div>
           <span class="read-title">{{ item.data.title }}</span>
           <span class="read-author">{{ item.data.author }}</span>
