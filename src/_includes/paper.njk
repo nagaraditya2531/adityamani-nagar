@@ -19,7 +19,14 @@ layout: base.njk
       {% endif %}
     </div>
 
-    {# The five questions. Each is a separate box in the CMS form. #}
+    {% if abstract %}
+    <div class="abstract">
+      <span class="mono">Abstract</span>
+      <p>{{ abstract }}</p>
+    </div>
+    {% endif %}
+
+    {# The five questions. All optional — any you leave blank simply don't appear. #}
     <dl class="five">
       {% if problem %}<div><dt>The problem</dt><dd>{{ problem }}</dd></div>{% endif %}
       {% if mattered %}<div><dt>Why it mattered</dt><dd>{{ mattered }}</dd></div>{% endif %}
