@@ -1,5 +1,7 @@
-# The "Now" block on the home page. Update this monthly — it is the cheapest
-# possible signal that the site is alive. Editable in the CMS under Settings.
+# The "Now" block on the home page.
+# Set show: false to hide the whole block. Delete any line you don't want —
+# the page renders whatever is here and nothing more.
+show: true
 updated: July 2026
 lines:
   - label: In the lab
