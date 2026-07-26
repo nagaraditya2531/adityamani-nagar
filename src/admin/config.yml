@@ -36,6 +36,7 @@ collections:
       - { name: journal, label: Journal, widget: string, required: false }
       - { name: doi,     label: DOI, widget: string, required: false, hint: "Just the 10.xxxx/... part" }
       - { name: pdf,     label: PDF, widget: file, required: false }
+      - { name: image,   label: "Thumbnail (graphical abstract, figure)", widget: image, required: false }
       - { name: data_url, label: Data link, widget: string, required: false }
       - name: visibility
         label: Visibility
@@ -72,6 +73,7 @@ collections:
       - { name: title,   label: Title, widget: string }
       - { name: date,    label: Date, widget: datetime }
       - { name: summary, label: One-line summary, widget: string, required: false }
+      - { name: image,   label: Thumbnail, widget: image, required: false }
       - name: visibility
         label: Visibility
         widget: select
@@ -98,6 +100,7 @@ collections:
         widget: select
         options: [book, paper]
         default: book
+      - { name: cover, label: "Cover image", widget: image, required: false }
       - { name: note, label: "One honest line", widget: text }
       - name: visibility
         label: Visibility
@@ -148,6 +151,7 @@ collections:
         default: active
       - { name: summary, label: Summary, widget: text }
       - { name: meta,    label: "Small print", widget: string, required: false }
+      - { name: image,   label: Image, widget: image, required: false }
       - name: visibility
         label: Visibility
         widget: select
@@ -164,9 +168,13 @@ collections:
         label: "Site — name, menu, links"
         file: "src/_data/site.json"
         fields:
-          - { name: name,     label: Your name, widget: string }
+          - { name: name,     label: "Your full name (used by search engines)", widget: string }
+          - { name: shortName, label: "First name", widget: string, required: false }
           - { name: tagline,  label: Tagline, widget: string }
+          - { name: jobTitle, label: "Job title (e.g. Chemist)", widget: string, required: false }
+          - { name: affiliation, label: Institution, widget: string, required: false }
           - { name: location, label: Location, widget: string }
+          - { name: url, label: "Site address (no trailing slash)", widget: string, hint: "Change this when you attach a domain" }
           - { name: email,    label: Email, widget: string }
           - { name: portrait, label: Portrait photo, widget: image }
           - { name: version,  label: Version number, widget: string }
