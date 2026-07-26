@@ -22,10 +22,8 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "src/js": "js" });
   eleventyConfig.addPassthroughCopy({ "src/admin": "admin" });
 
-  // Note: we do NOT ignore src/admin here. Ignoring it can also cancel the
-  // passthrough copy above, which makes /admin/ 404. Instead, "html" is left
-  // out of templateFormats at the bottom of this file, so Eleventy never
-  // tries to render admin/index.html as a template. It just gets copied.
+  // The CMS lives at /admin. Eleventy must not try to render it.
+  eleventyConfig.ignores.add("src/admin/**");
 
   /* --- 2. Visibility ---------------------------------------------------
      Every piece of content has a `visibility` field:
@@ -37,7 +35,22 @@ module.exports = function (eleventyConfig) {
   const visible = (items) =>
     items.filter((item) => (item.data.visibility || "public") === "public");
 
-  const newestFirst = (a, b) => (b.data.date || 0) - (a.data.date || 0);
+  /* Dates arrive in two shapes: a real Date (from a plain YAML date) or a
+     string (which is what the CMS writes). This turns either into a Date,
+     or null if it can't. Everything below goes through it. */
+  const toDate = (value) => {
+    if (!value) return null;
+    if (value instanceof Date) return isNaN(value.getTime()) ? null : value;
+    const parsed = new Date(value);
+    return isNaN(parsed.getTime()) ? null : parsed;
+  };
+
+  const stamp = (item) => {
+    const d = toDate(item.data.date);
+    return d ? d.getTime() : 0;
+  };
+
+  const newestFirst = (a, b) => stamp(b) - stamp(a);
 
   /* --- 3. Content lists (Eleventy calls these "collections") ------------ */
   eleventyConfig.addCollection("papers", (c) =>
@@ -78,7 +91,8 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addFilter("byYear", (items) => {
     const groups = {};
     (items || []).forEach((item) => {
-      const y = item.data.date ? item.data.date.getFullYear() : "Undated";
+      const d = toDate(item.data.date);
+      const y = d ? d.getFullYear() : "Undated";
       (groups[y] = groups[y] || []).push(item);
     });
     return Object.keys(groups)
@@ -87,9 +101,12 @@ module.exports = function (eleventyConfig) {
   });
 
   // Turn a date into "July 2026".
-  eleventyConfig.addFilter("monthYear", (d) =>
-    d ? d.toLocaleDateString("en-GB", { month: "long", year: "numeric" }) : ""
-  );
+  eleventyConfig.addFilter("monthYear", (value) => {
+    const d = toDate(value);
+    return d
+      ? d.toLocaleDateString("en-GB", { month: "long", year: "numeric" })
+      : "";
+  });
 
   // Take the first N of a list.
   eleventyConfig.addFilter("limit", (arr, n) => (arr || []).slice(0, n));
@@ -104,6 +121,6 @@ module.exports = function (eleventyConfig) {
     },
     markdownTemplateEngine: "njk",
     htmlTemplateEngine: "njk",
-    templateFormats: ["njk", "md"]
+    templateFormats: ["njk", "md", "html"]
   };
 };
