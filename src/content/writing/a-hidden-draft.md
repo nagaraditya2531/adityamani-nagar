@@ -2,7 +2,7 @@
 title: A half-finished thought
 date: 2026-07-01
 summary: ''
-visibility: public
+visibility: unlisted
 ---
 
 This file exists in the repository but no page is built for it, and it appears
