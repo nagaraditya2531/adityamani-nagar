@@ -7,7 +7,7 @@ description: About me, and how to get in touch.
 <div class="wrap">
   <div class="pagehead rise">
     <span class="mono">About</span>
-    <h1>The short version.</h1>
+    <h1>{{ about.heading }}</h1>
   </div>
 </div>
 
@@ -15,23 +15,24 @@ description: About me, and how to get in touch.
   <div class="wrap">
     <div class="about rise">
       <div>
-        <p>Two or three paragraphs, written the way you'd explain yourself to someone outside
-           your subfield.</p>
-        <p>Then a paragraph that isn't work. It's usually why someone emails instead of
-           just bookmarking.</p>
+        {% for para in about.paragraphs %}
+        <p>{{ para }}</p>
+        {% endfor %}
       </div>
+      {% if site.facts and site.facts.length %}
       <ul class="facts">
         {% for f in site.facts %}
         <li><span class="k">{{ f.key }}</span><span class="v">{{ f.value }}</span></li>
         {% endfor %}
       </ul>
+      {% endif %}
     </div>
   </div>
 </section>
 
 <section class="section" id="contact">
   <div class="wrap">
-    <div class="section-head rise"><h2>Tell me what you're working on.</h2></div>
+    <div class="section-head rise"><h2>{{ about.contact_heading }}</h2></div>
     <div class="rise">
       <a class="mailto" href="mailto:{{ site.email }}">{{ site.email }}</a>
       <div class="elsewhere">
