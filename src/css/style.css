@@ -172,24 +172,26 @@ h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.1;letter-spaci
 /* =========================================================
    Footer: contact, site map, profile links, then a thin bar
    ========================================================= */
-footer{border-top:1px solid var(--line);margin-top:clamp(2rem,6vw,4rem)}
-footer .wrap{padding-top:clamp(2.2rem,5vw,3.2rem);padding-bottom:2.2rem;color:var(--ink-soft)}
+footer{border-top:1px solid var(--line)}
+footer .wrap{padding-top:clamp(1.8rem,3.5vw,2.4rem);padding-bottom:1.5rem;color:var(--ink-soft)}
 
-.footgrid{display:grid;gap:2rem}
-@media (min-width:44rem){.footgrid{grid-template-columns:repeat(3,1fr);gap:2.5rem}}
-@media (min-width:64rem){.footgrid{grid-template-columns:2fr 1fr 1fr;gap:clamp(2.5rem,6vw,5rem)}}
+.footgrid{display:grid;gap:1.6rem}
+@media (min-width:44rem){.footgrid{grid-template-columns:repeat(3,1fr);gap:2rem}}
+@media (min-width:64rem){.footgrid{grid-template-columns:1.6fr 1.1fr .8fr;gap:clamp(2rem,4vw,3.5rem)}}
 
 .footname{font-family:var(--display);font-size:1.15rem;font-weight:600;color:var(--ink);letter-spacing:-.02em;margin:0 0 .3rem}
-.foottag{font-size:.9rem;margin:0 0 1rem;color:var(--ink-soft)}
+.foottag{font-size:.88rem;margin:0 0 .7rem;color:var(--ink-soft)}
 .footmail{font-family:var(--mono);font-size:.75rem;letter-spacing:.04em;color:var(--accent);text-decoration:none;border-bottom:1px solid color-mix(in srgb,var(--accent) 35%,transparent);word-break:break-word}
 .footmail:hover{border-bottom-color:var(--accent)}
 
-.foothead{color:var(--ink-faint);display:block;margin-bottom:.9rem}
-.footlist{list-style:none;margin:0;padding:0;display:grid;gap:.5rem}
-.footlist a{font-size:.9rem;text-decoration:none;color:var(--ink-soft);transition:color .2s}
+.foothead{color:var(--ink-faint);display:block;margin-bottom:.7rem}
+.footlist{list-style:none;margin:0;padding:0;display:grid;gap:.3rem}
+/* the page list runs in two short columns rather than one tall one */
+@media (min-width:44rem){.footlist--pages{grid-template-columns:repeat(2,minmax(0,1fr));gap:.3rem 1rem}}
+.footlist a{font-size:.86rem;text-decoration:none;color:var(--ink-soft);transition:color .2s}
 .footlist a:hover{color:var(--ink)}
 
-.footbar{margin-top:clamp(2rem,5vw,3rem);padding-top:1.2rem;border-top:1px solid var(--line-soft);color:var(--ink-faint);display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;justify-content:space-between;align-items:baseline}
+.footbar{margin-top:clamp(1.4rem,3vw,2rem);padding-top:1rem;border-top:1px solid var(--line-soft);color:var(--ink-faint);display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;justify-content:space-between;align-items:baseline}
 .footbar span:nth-child(2){order:3;width:100%}
 @media (min-width:52rem){.footbar span:nth-child(2){order:0;width:auto;text-align:center;flex:1}}
 footer a.quiet{color:inherit;text-decoration:none}
@@ -356,3 +358,21 @@ footer a.quiet:hover{color:var(--accent)}
   text-decoration:none;color:var(--ink);border-bottom:1px solid var(--accent);word-break:break-word}
 .contact-card .email:hover{color:var(--accent)}
 .contact-card .elsewhere{margin-top:1.1rem;gap:1rem}
+
+
+/* =========================================================
+   Profile links as brand marks
+   ========================================================= */
+.iconrow{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:.55rem}
+.iconrow a{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:2.1rem;height:2.1rem;border:1px solid var(--line);
+  color:var(--ink-soft);text-decoration:none;
+  transition:color .2s,border-color .2s,background .2s;
+}
+.iconrow a:hover{color:var(--paper);background:var(--ink);border-color:var(--ink)}
+.iconrow svg{width:1.02rem;height:1.02rem;display:block}
+.iconrow .icon-text{font-family:var(--mono);font-size:.58rem;letter-spacing:.06em;
+  text-transform:uppercase;padding:0 .45rem;white-space:nowrap}
+.iconrow a:has(.icon-text){width:auto;padding:0 .1rem}
+.contact-card .iconrow{margin-top:1.1rem}
