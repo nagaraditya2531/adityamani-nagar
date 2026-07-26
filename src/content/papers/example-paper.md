@@ -4,7 +4,7 @@ date: 2024-01-25T01:00
 year: 2024
 authors: Adityamani Nagar; Ashutosh Srivastava; Arijit Sengupta * ; Musharaf Ali Sk; Priya Goyal; Parveen K. Verma; Prasanta K. Mohapatra
 journal: Inorganic Chemistry
-doi: /10.1021/acs.inorgchem.3c037310
+doi: 10.1021/acs.inorgchem.3c037310
 pdf: /assets/papers/example-paper.pdf
 data_url: ''
 visibility: public
