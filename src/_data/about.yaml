@@ -1,0 +1,12 @@
+# The About page. Editable in the CMS under Settings → About page.
+# Add or remove paragraphs freely — the page loops over whatever is here.
+heading: The short version.
+
+paragraphs:
+  - Two or three paragraphs, written the way you'd explain yourself to someone
+    outside your subfield. Where you are, how you got here, what kind of problem
+    you're best at.
+  - Then a paragraph that isn't work. It's usually why someone emails instead of
+    just bookmarking.
+
+contact_heading: Tell me what you're working on.
