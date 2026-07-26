@@ -16,7 +16,7 @@ description: Researcher and writer. Research, publications, essays, reading and 
         </p>
       </div>
       <figure class="portrait rise">
-        <img src="{{ site.portrait }}" alt="{{ site.name }}">
+        <img src="{{ site.portrait }}" alt="{{ site.name }}, {{ site.jobTitle }} at {{ site.affiliation }}" width="480" height="600" fetchpriority="high">
       </figure>
     </div>
 
@@ -53,7 +53,7 @@ description: Researcher and writer. Research, publications, essays, reading and 
       <article class="item" data-kind="{% if 'reading' in item.filePathStem or 'places' in item.filePathStem %}life{% else %}work{% endif %}">
         <a class="item-link{% if item.data.image or item.data.cover or item.data.photo %} has-thumb{% endif %}" href="{{ target }}">
           {% set thumb = item.data.image or item.data.cover or item.data.photo %}
-          {% if thumb %}<img class="item-thumb" src="{{ thumb }}" alt="">{% endif %}
+          {% if thumb %}<img class="item-thumb" src="{{ thumb }}" alt="{{ item.data.title }} — {{ site.name }}" loading="lazy" decoding="async">{% endif %}
           <span class="item-type">{% if 'papers' in item.filePathStem %}Paper{% elif 'writing' in item.filePathStem %}Essay{% elif 'places' in item.filePathStem %}Places{% else %}Reading{% endif %}</span>
           <span class="item-title">{{ item.data.title }}</span>
           <span class="item-meta">{{ item.data.journal or item.data.where or item.data.author or "" }} · {{ item.data.date | monthYear }}</span>
@@ -92,7 +92,7 @@ description: Researcher and writer. Research, publications, essays, reading and 
       <div class="elsewhere">
         <a href="/reading/">What I'm reading</a>
         <a href="/places/">Where I've been</a>
-        <a href="/about/#contact">Get in touch</a>
+        <a href="/about/">Get in touch</a>
       </div>
     </div>
   </div>
