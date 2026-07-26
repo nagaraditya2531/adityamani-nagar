@@ -1,7 +1,8 @@
 ---
 title: A half-finished thought
 date: 2026-07-01
-visibility: draft
+summary: ''
+visibility: public
 ---
 
 This file exists in the repository but no page is built for it, and it appears
