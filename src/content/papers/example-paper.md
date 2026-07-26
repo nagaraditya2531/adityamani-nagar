@@ -14,14 +14,5 @@ mattered: ''
 found: ''
 contribution: ''
 next: ''
-bibtex: |-
-  #
-  @article{nagar2026,
-    author  = {Nagar, Aditya},
-    title   = {Full title of the paper},
-    journal = {Journal Name},
-    year    = {2026},
-    doi     = {10.0000/000000}
-  }
-  #
+bibtex: 'Adityamani Nagar, Ashutosh Srivastava, Arijit Sengupta, Musharaf Ali Sk, Priya Goyal, Parveen K. Verma, Prasanta K. Mohapatra; Experimental and Theoretical Insight into the Ionic Liquid-Mediated Complexation of Trivalent Lanthanides with β‑Diketone and Its Fluorinated Analogue. Inorg. Chem. 5 February 2024; 63 (5): 2533–2552. https://doi.org/10.1021/acs.inorgchem.3c03731'
 ---
