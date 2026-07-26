@@ -15,6 +15,7 @@ found: ffff
 contribution: rrfrfe
 next: ff
 bibtex: |-
+  #
   @article{nagar2026,
     author  = {Nagar, Aditya},
     title   = {Full title of the paper},
@@ -22,4 +23,5 @@ bibtex: |-
     year    = {2026},
     doi     = {10.0000/000000}
   }
+  #
 ---
