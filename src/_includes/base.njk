@@ -1,3 +1,4 @@
+{% from "icons.njk" import icon %}
 {# ===========================================================================
    base.njk — the shell every page is poured into.
 
@@ -34,6 +35,7 @@
   "@context": "https://schema.org",
   "@type": "Person",
   "name": "{{ site.name }}",
+  "alternateName": [{% for n in site.alternateNames %}"{{ n }}"{% if not loop.last %}, {% endif %}{% endfor %}],
   "url": "{{ site.url }}/",
   "jobTitle": "{{ site.jobTitle }}",
   "email": "mailto:{{ site.email }}",
@@ -104,7 +106,7 @@
 
       <div class="footcol">
         <span class="mono foothead">Pages</span>
-        <ul class="footlist">
+        <ul class="footlist footlist--pages">
           {% for item in site.nav %}
           <li><a href="{{ item.url }}">{{ item.label }}</a></li>
           {% endfor %}
@@ -113,9 +115,11 @@
 
       <div class="footcol">
         <span class="mono foothead">Elsewhere</span>
-        <ul class="footlist">
+        <ul class="iconrow">
           {% for l in site.links %}
-          <li><a href="{{ l.url }}">{{ l.label }}</a></li>
+          {% if l.url and l.url != "#" %}
+          <li><a href="{{ l.url }}" aria-label="{{ l.label }}" title="{{ l.label }}">{{ icon(l.label) }}</a></li>
+          {% endif %}
           {% endfor %}
         </ul>
       </div>
