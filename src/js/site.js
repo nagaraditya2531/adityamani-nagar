@@ -42,3 +42,19 @@
 
   apply('all');
 })();
+
+/* -------------------------------------------------------------------------
+   Light / dark switch.
+   The theme itself is applied by a small script in <head> so the page never
+   flashes. This part only handles clicking the button.
+   ------------------------------------------------------------------------- */
+(function () {
+  var btn = document.getElementById("themeToggle");
+  if (!btn) return;
+
+  btn.addEventListener("click", function () {
+    var now = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", now);
+    try { localStorage.setItem("theme", now); } catch (e) {}
+  });
+})();
