@@ -19,13 +19,24 @@ description: About me, and how to get in touch.
         <p>{{ para }}</p>
         {% endfor %}
       </div>
-      {% if site.facts and site.facts.length %}
-      <ul class="facts">
-        {% for f in site.facts %}
-        <li><span class="k">{{ f.key }}</span><span class="v">{{ f.value }}</span></li>
-        {% endfor %}
-      </ul>
-      {% endif %}
+      <div>
+        {# Contact sits at the top of the right column, visible without scrolling. #}
+        <div class="contact-card">
+          <span class="mono">Get in touch</span>
+          <a class="email" href="mailto:{{ site.email }}">{{ site.email }}</a>
+          <div class="elsewhere">
+            {% for l in site.links %}<a href="{{ l.url }}">{{ l.label }}</a>{% endfor %}
+          </div>
+        </div>
+
+        {% if site.facts and site.facts.length %}
+        <ul class="facts">
+          {% for f in site.facts %}
+          <li><span class="k">{{ f.key }}</span><span class="v">{{ f.value }}</span></li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </div>
     </div>
   </div>
 </section>
