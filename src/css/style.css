@@ -403,3 +403,31 @@ footer a.quiet:hover{color:var(--accent)}
   text-transform:uppercase;padding:0 .45rem;white-space:nowrap}
 .iconrow a:has(.icon-text){width:auto;padding:0 .1rem}
 .contact-card .iconrow{margin-top:1.1rem}
+
+/* =========================================================================
+   PORTRAIT — final say.
+   This block sits at the very end of the file, so it overrides anything
+   above it. If the photo ever goes oval again, the cause is a rule earlier
+   in the file; this block outranks it.
+
+   To change the shape, edit HERE, not the variables at the top.
+     circle  -> aspect-ratio:1/1;  border-radius:50%;
+     square  -> aspect-ratio:1/1;  border-radius:0;
+     upright -> aspect-ratio:4/5;  border-radius:0;
+     rounded -> aspect-ratio:1/1;  border-radius:1.5rem;
+   ========================================================================= */
+.portrait img{
+  width:100%;
+  max-width:16rem;
+  height:auto;
+  aspect-ratio:1/1;          /* the square box. Without this: no circle. */
+  border-radius:50%;         /* 50% = circle */
+  object-fit:cover;
+  object-position:50% 30%;   /* second value: lower keeps more of the top */
+  display:block;
+  background:var(--surface);
+  border:1px solid var(--line-soft);
+}
+@media (min-width:52rem){
+  .intro{grid-template-columns:minmax(0,1fr) 16rem}
+}
