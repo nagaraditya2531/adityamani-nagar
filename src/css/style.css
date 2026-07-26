@@ -237,11 +237,12 @@ footer a.quiet:hover{color:var(--accent)}
 /* =========================================================
    Paper page: title full width, details in a side rail
    ========================================================= */
-.article--paper{max-width:66rem}
+.article--paper{max-width:72rem}
 
-.paper-head{padding:clamp(2rem,6vw,3.5rem) 0 clamp(1.4rem,3vw,2rem)}
-.paper-head h1{font-size:clamp(1.7rem,3.6vw,2.7rem);letter-spacing:-.025em;max-width:26ch}
-.paper-authors{margin-top:1.1rem;color:var(--ink-soft);font-style:italic;max-width:60ch}
+.paper-head{padding:clamp(2rem,6vw,3.5rem) 0 clamp(1.6rem,3vw,2.2rem)}
+/* No max-width: the title runs the full width of the page. */
+.paper-head h1{font-size:clamp(1.7rem,3.8vw,3rem);letter-spacing:-.028em;line-height:1.06;max-width:none}
+.paper-authors{margin-top:1.2rem;color:var(--ink-soft);font-style:italic;max-width:none}
 
 .article-grid{display:grid;gap:2.2rem;padding-bottom:clamp(3rem,7vw,5rem)}
 @media (min-width:58rem){
