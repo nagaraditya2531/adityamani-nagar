@@ -226,3 +226,8 @@ footer a.quiet:hover{color:var(--accent)}
 /* ---- a quieter personal aside ---- */
 .aside{border-left:2px solid var(--accent-warm);padding:.2rem 0 .2rem 1.2rem;margin:2rem 0 0;max-width:56ch}
 .aside p{font-family:var(--display);font-style:italic;font-size:1.08rem;color:var(--ink-soft)}
+
+/* ---- abstract block on a paper page ---- */
+.abstract{margin-top:2.5rem;border-top:1px solid var(--line);padding-top:1.4rem;max-width:62ch}
+.abstract .mono{color:var(--ink-faint);display:block;margin-bottom:.7rem}
+.abstract p{font-family:var(--display);font-size:1.05rem;color:var(--ink-soft);line-height:1.6}
