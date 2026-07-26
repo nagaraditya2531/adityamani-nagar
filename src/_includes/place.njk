@@ -1,6 +1,7 @@
 ---
 layout: base.njk
 ---
+{# place.njk — the page for one trip. #}
 <div class="wrap">
   <article class="article">
     <div class="pagehead">
@@ -8,7 +9,7 @@ layout: base.njk
       <h1>{{ title }}</h1>
       <p class="article-meta">{{ where }} · {{ date | monthYear }}</p>
     </div>
-    {% if photo %}<img src="{{ photo }}" alt="" style="width:100%;margin-bottom:2rem;border:1px solid var(--line-soft)">{% endif %}
+    {% if photo %}<img src="{{ photo }}" alt="{{ title }}, {{ where }}" loading="lazy" style="width:100%;margin-bottom:2rem;border:1px solid var(--line-soft)">{% endif %}
     {{ content | safe }}
   </article>
 </div>
