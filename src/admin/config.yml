@@ -11,7 +11,7 @@
 
 backend:
   name: github
-  repo: nagaraditya2531/adityamani-nagar   # change if you rename the repo
+  repo: nagaraditya2531/nagaraditya2531.github.io   # change if you rename the repo
   branch: main
 
 # Where the CMS puts anything you upload.
