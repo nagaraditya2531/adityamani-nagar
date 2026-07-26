@@ -11,7 +11,7 @@
 
 backend:
   name: github
-  repo: nagaraditya2531/nagaraditya2531.github.io   # change if you rename the repo
+  repo: nagaraditya2531/adityamani-nagar   # change if you rename the repo
   branch: main
 
 # Where the CMS puts anything you upload.
@@ -193,13 +193,29 @@ collections:
         label: "Now block"
         file: "src/_data/now.yaml"
         fields:
-          - { name: updated, label: "Updated (e.g. July 2026)", widget: string }
+          - name: show
+            label: "Show the Now block on the home page?"
+            widget: boolean
+            default: true
+          - { name: updated, label: "Updated (e.g. July 2026)", widget: string, required: false }
           - name: lines
             label: Lines
             widget: list
             fields:
               - { name: label, label: Label, widget: string }
-              - { name: text,  label: Text, widget: string }
+              - { name: text,  label: Text, widget: string, required: false }
+
+      - name: about
+        label: "About page"
+        file: "src/_data/about.yaml"
+        fields:
+          - { name: heading, label: Heading, widget: string }
+          - name: paragraphs
+            label: Paragraphs
+            widget: list
+            field: { name: paragraph, label: Paragraph, widget: text }
+            hint: "Add, remove or reorder freely."
+          - { name: contact_heading, label: "Contact heading", widget: string }
 
       - name: questions
         label: "Open questions"
