@@ -1,20 +1,10 @@
 {
   "name": "Adityamani Nagar",
-  "shortName": "Aditya",
-  "alternateNames": [
-    "Aditya Nagar",
-    "Aditya Mani Nagar",
-    "A. Nagar"
-  ],
   "tagline": "Researcher · Writer",
-  "jobTitle": "Chemist",
-  "affiliation": "Institution",
-  "location": "Bengaluru",
+  "location": "Mumbai",
   "email": "you@example.com",
-  "portrait": "/assets/adityamani-nagar.jpg",
-  "url": "https://nagaraditya2531.github.io",
+  "portrait": "/assets/uploads/adityamani-nagar.jpg",
   "version": "2.0",
-  "_comment": "Edit in the CMS under Settings -> Site. `url` must be your live address with no trailing slash. `alternateNames` are the other spellings of your name that appear on papers - they tell Google these all refer to one person.",
   "nav": [
     {
       "label": "Home",
@@ -66,11 +56,11 @@
   "facts": [
     {
       "key": "Position",
-      "value": "Role · Institution"
+      "value": "stu· Institution"
     },
     {
       "key": "Based",
-      "value": "City, Country"
+      "value": "mumbai, Country"
     },
     {
       "key": "ORCID",
@@ -80,5 +70,6 @@
       "key": "CV",
       "value": "/assets/cv.pdf"
     }
-  ]
+  ],
+  "_comment": "Edit any of this in the CMS under Settings → Site. The nav below controls the menu on every page — add an item here and it appears everywhere."
 }
