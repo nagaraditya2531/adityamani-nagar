@@ -18,6 +18,7 @@ description: Areas of work and open questions.
     <div class="chapters rise">
       {% for c in collections.chapters %}
       <article class="chapter" data-status="{{ c.data.status }}">
+        {% if c.data.image %}<img class="chapter-img" src="{{ c.data.image }}" alt="">{% endif %}
         <span class="chapter-span">{{ c.data.span }} · {{ c.data.status | capitalize }}</span>
         <h3>{{ c.data.title }}</h3>
         <p>{{ c.data.summary }}</p>
