@@ -1,0 +1,50 @@
+{# ===========================================================================
+   base.njk — the shell every page is poured into.
+
+   This file exists ONCE. The navigation, the fonts, the footer: all here.
+   Change the nav in src/_data/site.json and every page updates.
+
+   {{ something }}   prints a value
+   {% if %} {% for %}  logic — everything else is ordinary HTML
+   =========================================================================== #}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% if title %}{{ title }} — {{ site.name }}{% else %}{{ site.name }}{% endif %}</title>
+<meta name="description" content="{{ description or site.tagline }}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&family=Spectral:ital,wght@0,300;0,500;0,600;1,300;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="/">{{ site.name }}</a>
+    <nav class="topnav" aria-label="Main">
+      {% for item in site.nav %}
+      <a href="{{ item.url }}"{% if item.url == page.url %} aria-current="page"{% endif %}>{{ item.label }}</a>
+      {% endfor %}
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  {{ content | safe }}
+</main>
+
+<footer>
+  <div class="wrap">
+    {# The full stop links to the manifesto — unlisted, findable by the curious. #}
+    <span class="mono">Atlas v{{ site.version }} · a living record of curiosity<a class="quiet" href="/manifesto/" aria-label="Manifesto">.</a></span>
+    <span class="mono">© {{ site.name }}</span>
+  </div>
+</footer>
+
+<script src="/js/site.js"></script>
+</body>
+</html>

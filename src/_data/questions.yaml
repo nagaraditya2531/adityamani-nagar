@@ -1,0 +1,12 @@
+# Open questions. state must be one of: open, active, closed
+# When a question closes, set state to "closed" and point answer_url at the paper.
+questions:
+  - text: Write the question you'd most like someone to email you about.
+    state: open
+    answer_url: ""
+  - text: A second one, narrower — something you're actively poking at right now.
+    state: active
+    answer_url: ""
+  - text: A question you've now answered, kept here so the trail is visible.
+    state: closed
+    answer_url: /papers/example-paper/

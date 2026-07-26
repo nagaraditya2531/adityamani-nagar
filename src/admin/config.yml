@@ -1,0 +1,210 @@
+# =============================================================================
+# The CMS at /admin/. This file describes the forms you see when you log in.
+# Add a field here and a new box appears in the editor.
+#
+# Field types used below:
+#   string  one-line box      text    multi-line box
+#   markdown rich text        image   picks from the media library
+#   select  dropdown          datetime  date picker
+#   list    repeatable rows
+# =============================================================================
+
+backend:
+  name: github
+  repo: nagaraditya2531/adityamani-nagar   # change if you rename the repo
+  branch: main
+
+# Where the CMS puts anything you upload.
+media_folder: "src/assets/uploads"
+public_folder: "/assets/uploads"
+
+collections:
+
+  # ---------------------------------------------------------------- papers
+  - name: papers
+    label: Publications
+    label_singular: Publication
+    folder: "src/content/papers"
+    create: true
+    slug: "{{slug}}"
+    summary: "{{year}} — {{title}}"
+    fields:
+      - { name: title,   label: Title, widget: string }
+      - { name: date,    label: Date,  widget: datetime }
+      - { name: year,    label: Year,  widget: number, value_type: int }
+      - { name: authors, label: Authors, widget: string, hint: "As they appear on the paper" }
+      - { name: journal, label: Journal, widget: string, required: false }
+      - { name: doi,     label: DOI, widget: string, required: false, hint: "Just the 10.xxxx/... part" }
+      - { name: pdf,     label: PDF, widget: file, required: false }
+      - { name: data_url, label: Data link, widget: string, required: false }
+      - name: visibility
+        label: Visibility
+        widget: select
+        default: public
+        options:
+          - { label: "Public — shown everywhere", value: public }
+          - { label: "Unlisted — has a link, not in any list", value: unlisted }
+          - { label: "Draft — not on the site at all", value: draft }
+      - { name: problem,      label: "The problem", widget: text }
+      - { name: mattered,     label: "Why it mattered", widget: text }
+      - { name: found,        label: "What we found", widget: text }
+      - { name: contribution, label: "My contribution", widget: text }
+      - { name: next,         label: "What's next", widget: text }
+      - { name: bibtex,       label: BibTeX, widget: text, required: false }
+      - { name: body,         label: "Anything else", widget: markdown, required: false }
+
+  # --------------------------------------------------------------- writing
+  - name: writing
+    label: Writing
+    label_singular: Essay
+    folder: "src/content/writing"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { name: title,   label: Title, widget: string }
+      - { name: date,    label: Date, widget: datetime }
+      - { name: summary, label: One-line summary, widget: string, required: false }
+      - name: visibility
+        label: Visibility
+        widget: select
+        default: public
+        options:
+          - { label: "Public", value: public }
+          - { label: "Unlisted", value: unlisted }
+          - { label: "Draft", value: draft }
+      - { name: body, label: Text, widget: markdown }
+
+  # --------------------------------------------------------------- reading
+  - name: reading
+    label: Reading
+    label_singular: Book or paper
+    folder: "src/content/reading"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { name: title,  label: Title, widget: string }
+      - { name: author, label: Author, widget: string }
+      - { name: date,   label: Finished, widget: datetime }
+      - name: kind
+        label: Kind
+        widget: select
+        options: [book, paper]
+        default: book
+      - { name: note, label: "One honest line", widget: text }
+      - name: visibility
+        label: Visibility
+        widget: select
+        default: public
+        options:
+          - { label: "Public", value: public }
+          - { label: "Draft", value: draft }
+
+  # ---------------------------------------------------------------- places
+  - name: places
+    label: Places
+    label_singular: Trip
+    folder: "src/content/places"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { name: title,   label: Title, widget: string }
+      - { name: where,   label: "City, Country", widget: string }
+      - { name: date,    label: Date, widget: datetime }
+      - { name: photo,   label: Photo, widget: image, required: false }
+      - { name: summary, label: One-line summary, widget: string, required: false }
+      - name: visibility
+        label: Visibility
+        widget: select
+        default: public
+        options:
+          - { label: "Public", value: public }
+          - { label: "Unlisted", value: unlisted }
+          - { label: "Draft", value: draft }
+      - { name: body, label: Text, widget: markdown, required: false }
+
+  # -------------------------------------------------------------- chapters
+  - name: chapters
+    label: Research areas
+    label_singular: Area
+    folder: "src/content/chapters"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { name: title,   label: Name, widget: string }
+      - { name: started, label: Start year, widget: number, value_type: int }
+      - { name: span,    label: "Shown as", widget: string, hint: "e.g. 2024 — present" }
+      - name: status
+        label: Status
+        widget: select
+        options: [active, past]
+        default: active
+      - { name: summary, label: Summary, widget: text }
+      - { name: meta,    label: "Small print", widget: string, required: false }
+      - name: visibility
+        label: Visibility
+        widget: select
+        default: public
+        options:
+          - { label: "Public", value: public }
+          - { label: "Draft", value: draft }
+
+  # -------------------------------------------------------- settings files
+  - name: settings
+    label: Settings
+    files:
+      - name: site
+        label: "Site — name, menu, links"
+        file: "src/_data/site.json"
+        fields:
+          - { name: name,     label: Your name, widget: string }
+          - { name: tagline,  label: Tagline, widget: string }
+          - { name: location, label: Location, widget: string }
+          - { name: email,    label: Email, widget: string }
+          - { name: portrait, label: Portrait photo, widget: image }
+          - { name: version,  label: Version number, widget: string }
+          - name: nav
+            label: Menu
+            widget: list
+            fields:
+              - { name: label, label: Label, widget: string }
+              - { name: url,   label: URL, widget: string }
+          - name: links
+            label: Profile links
+            widget: list
+            fields:
+              - { name: label, label: Label, widget: string }
+              - { name: url,   label: URL, widget: string }
+          - name: facts
+            label: About-page facts
+            widget: list
+            fields:
+              - { name: key,   label: Label, widget: string }
+              - { name: value, label: Value, widget: string }
+
+      - name: now
+        label: "Now block"
+        file: "src/_data/now.yaml"
+        fields:
+          - { name: updated, label: "Updated (e.g. July 2026)", widget: string }
+          - name: lines
+            label: Lines
+            widget: list
+            fields:
+              - { name: label, label: Label, widget: string }
+              - { name: text,  label: Text, widget: string }
+
+      - name: questions
+        label: "Open questions"
+        file: "src/_data/questions.yaml"
+        fields:
+          - name: questions
+            label: Questions
+            widget: list
+            fields:
+              - { name: text, label: Question, widget: text }
+              - name: state
+                label: State
+                widget: select
+                options: [open, active, closed]
+                default: open
+              - { name: answer_url, label: "Link to the answer", widget: string, required: false }

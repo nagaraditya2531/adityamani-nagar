@@ -1,0 +1,14 @@
+{
+  "name": "atlas",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Personal research site. Content lives in src/content as Markdown; Eleventy turns it into HTML.",
+  "scripts": {
+    "build": "eleventy",
+    "start": "eleventy --serve"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0",
+    "js-yaml": "^4.1.0"
+  }
+}

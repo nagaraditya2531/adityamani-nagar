@@ -1,0 +1,40 @@
+{# paper.njk — the page for one publication. Filled from the CMS form fields. #}
+---
+layout: base.njk
+---
+<div class="wrap">
+  <article class="article">
+    <div class="pagehead">
+      <a class="crumb" href="/publications/">← Publications</a>
+      <h1>{{ title }}</h1>
+      <p class="article-meta">
+        {{ authors }}{% if journal %} · <em>{{ journal }}</em>{% endif %}{% if year %}, {{ year }}{% endif %}
+      </p>
+      {% if doi or pdf or data_url %}
+      <div class="article-actions">
+        {% if doi %}<a class="btn" href="https://doi.org/{{ doi }}">DOI</a>{% endif %}
+        {% if pdf %}<a class="btn" href="{{ pdf }}">PDF</a>{% endif %}
+        {% if data_url %}<a class="btn" href="{{ data_url }}">Data</a>{% endif %}
+      </div>
+      {% endif %}
+    </div>
+
+    {# The five questions. Each is a separate box in the CMS form. #}
+    <dl class="five">
+      {% if problem %}<div><dt>The problem</dt><dd>{{ problem }}</dd></div>{% endif %}
+      {% if mattered %}<div><dt>Why it mattered</dt><dd>{{ mattered }}</dd></div>{% endif %}
+      {% if found %}<div><dt>What we found</dt><dd>{{ found }}</dd></div>{% endif %}
+      {% if contribution %}<div><dt>My contribution</dt><dd>{{ contribution }}</dd></div>{% endif %}
+      {% if next %}<div><dt>What's next</dt><dd>{{ next }}</dd></div>{% endif %}
+    </dl>
+
+    {% if content %}<div style="margin-top:2.5rem">{{ content | safe }}</div>{% endif %}
+
+    {% if bibtex %}
+    <div class="cite">
+      <span class="mono">Cite this</span>
+      <pre>{{ bibtex }}</pre>
+    </div>
+    {% endif %}
+  </article>
+</div>

@@ -1,0 +1,12 @@
+# The "Now" block on the home page. Update this monthly — it is the cheapest
+# possible signal that the site is alive. Editable in the CMS under Settings.
+updated: July 2026
+lines:
+  - label: In the lab
+    text: The actual thing on your bench this month.
+  - label: Reading
+    text: A book or paper, with half a sentence on why.
+  - label: Away from it
+    text: Something that isn't work. Keep this line.
+  - label: Next
+    text: Applications, a move, a conference.

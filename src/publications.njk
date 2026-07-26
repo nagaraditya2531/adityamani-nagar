@@ -1,0 +1,39 @@
+---
+layout: base.njk
+permalink: /publications/
+title: Publications
+description: Papers, in order.
+---
+<div class="wrap">
+  <div class="pagehead rise">
+    <span class="mono">The record</span>
+    <h1>Everything, in order.</h1>
+    <p>Each one has its own address, so it can be linked, cited and indexed on its own.</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="wrap">
+    <div class="rise">
+      {% for group in collections.papers | byYear %}
+      <section class="year">
+        <div class="year-inner">
+          <h3 class="year-mark">{{ group.year }}</h3>
+          <div>
+            {% for item in group.items %}
+            <article class="item">
+              <a class="item-link" href="{{ item.url }}">
+                <span class="item-type">Paper</span>
+                <span class="item-title">{{ item.data.title }}</span>
+                <span class="item-meta">{{ item.data.journal }}{% if item.data.year %} · {{ item.data.year }}{% endif %}</span>
+                <span class="item-arrow" aria-hidden="true">→</span>
+              </a>
+            </article>
+            {% endfor %}
+          </div>
+        </div>
+      </section>
+      {% endfor %}
+    </div>
+  </div>
+</section>

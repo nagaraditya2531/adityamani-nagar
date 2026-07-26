@@ -1,0 +1,34 @@
+{
+  "name": "Aditya Nagar",
+  "tagline": "Researcher · Writer",
+  "location": "Bengaluru",
+  "email": "you@example.com",
+  "portrait": "/assets/portrait.jpg",
+  "version": "2.0",
+
+  "_comment": "Edit any of this in the CMS under Settings → Site. The nav below controls the menu on every page — add an item here and it appears everywhere.",
+
+  "nav": [
+    { "label": "Home",         "url": "/" },
+    { "label": "Research",     "url": "/research/" },
+    { "label": "Publications", "url": "/publications/" },
+    { "label": "Writing",      "url": "/writing/" },
+    { "label": "Reading",      "url": "/reading/" },
+    { "label": "Places",       "url": "/places/" },
+    { "label": "About",        "url": "/about/" }
+  ],
+
+  "links": [
+    { "label": "GitHub",         "url": "https://github.com/nagaraditya2531" },
+    { "label": "ORCID",          "url": "#" },
+    { "label": "Google Scholar", "url": "#" },
+    { "label": "LinkedIn",       "url": "#" }
+  ],
+
+  "facts": [
+    { "key": "Position", "value": "Role · Institution" },
+    { "key": "Based",    "value": "City, Country" },
+    { "key": "ORCID",    "value": "0000-0000-0000-0000" },
+    { "key": "CV",       "value": "/assets/cv.pdf" }
+  ]
+}

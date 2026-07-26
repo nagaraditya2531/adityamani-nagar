@@ -1,0 +1,30 @@
+---
+layout: base.njk
+permalink: /reading/
+title: Reading
+description: Books and papers, with notes.
+---
+<div class="wrap">
+  <div class="pagehead rise">
+    <span class="mono">Reading</span>
+    <h1>Books and papers, with one honest line each.</h1>
+    <p>Not everything I've read — things that changed something.</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="wrap">
+    <ul class="reads rise">
+      {% for item in collections.reading %}
+      <li>
+        <div>
+          <span class="read-title">{{ item.data.title }}</span>
+          <span class="read-author">{{ item.data.author }}</span>
+          <p class="read-note">{{ item.data.note }}</p>
+        </div>
+        <span class="read-tag">{{ item.data.kind }} · {{ item.data.date | monthYear }}</span>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
