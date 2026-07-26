@@ -1,9 +1,9 @@
 ---
-title: Current area
-started: 2024
-span: 2024 — present
+title: High Valent Rare Earth Multiple Bonds
+started: 2026
+span: 2026 — present
 status: active
-summary: Two sentences on what this chapter is about and what you contribute to it.
-meta: 4 papers · 2 open questions
+summary: High Valent Rare Earth Multiple Bonds
+meta: ''
 visibility: public
 ---
