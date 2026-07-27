@@ -19,8 +19,15 @@
     {
       "label": "Research",
       "url": "/research/",
-      "subnav": false,
-      "children": []
+      "subnav": true,
+      "children": [
+        {
+          "label": "computational",
+          "mode": "topic",
+          "topic": "computational",
+          "url": ""
+        }
+      ]
     },
     {
       "label": "Publications",
