@@ -1,0 +1,26 @@
+---
+layout: base.njk
+---
+{# trip.njk — one conference or one detour. Both use this. #}
+<div class="wrap">
+  <article class="article">
+    <div class="pagehead">
+      <a class="crumb" href="{% if kind == 'conference' %}/conferences/{% else %}/detours/{% endif %}">
+        ← {% if kind == 'conference' %}Conferences{% else %}Detours{% endif %}
+      </a>
+      <h1>{{ (title or "Untitled") | chem | safe }}</h1>
+      <p class="article-meta">
+        {% if event %}{{ event }} · {% endif %}{{ where }} · {{ date | monthYear }}{% if role %} · {{ role }}{% endif %}
+      </p>
+    </div>
+    {% if photo %}<img src="{{ photo }}" alt="{{ title }}, {{ where }}" loading="lazy" style="width:100%;margin-bottom:2rem;border:1px solid var(--line-soft)">{% endif %}
+    {{ content | safe }}
+    {% if categories and categories.length %}
+    <ul class="chips" style="margin-top:2rem">
+      {% for cat in categories %}
+      <li><a href="/topics/{{ cat }}/">{{ cat | categoryLabel(collections.categories) }}</a></li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </article>
+</div>

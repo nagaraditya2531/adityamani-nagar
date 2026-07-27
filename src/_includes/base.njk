@@ -96,7 +96,12 @@
       <nav class="subnav" aria-label="{{ active.label }} sections">
         {% for child in active.children %}
         {% if child.label %}
-        <a href="{{ child.url }}"{% if child.url == page.url %} aria-current="page"{% endif %}>{{ child.label }}</a>
+          {# A sub-item points either at a Topic (a generated listing of
+             everything tagged with that category) or at a Page. #}
+          {% set href = "/topics/" + child.topic + "/" if child.mode == "topic" and child.topic else child.url %}
+          {% if href %}
+          <a href="{{ href }}"{% if href == page.url %} aria-current="page"{% endif %}>{{ child.label }}</a>
+          {% endif %}
         {% endif %}
         {% endfor %}
       </nav>

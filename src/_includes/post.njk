@@ -10,5 +10,12 @@ layout: base.njk
       <p class="article-meta">{{ date | monthYear }}</p>
     </div>
     {{ content | safe }}
+    {% if categories and categories.length %}
+    <ul class="chips" style="margin-top:2rem">
+      {% for cat in categories %}
+      <li><a href="/topics/{{ cat }}/">{{ cat | categoryLabel(collections.categories) }}</a></li>
+      {% endfor %}
+    </ul>
+    {% endif %}
   </article>
 </div>
