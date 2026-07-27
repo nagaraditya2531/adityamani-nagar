@@ -162,8 +162,8 @@
 
     <div class="footbar">
       {# The full stop links to the manifesto — unlisted, findable by the curious. #}
-      <span class="mono">Atlas v{{ site.version }} · a living record of curiosity<a class="quiet" href="/manifesto/" aria-label="Manifesto">.</a></span>
-      <span class="mono">Last updated {{ buildTime | fullDate }}</span>
+      <span class="mono">Atlas v{{ site.version }} · {{ pagetext.footer.tagline or "a living record of curiosity" }}<a class="quiet" href="/manifesto/" aria-label="Manifesto">.</a></span>
+      <span class="mono">{{ pagetext.footer.updated_label or "Last updated" }} {{ buildTime | fullDate }}</span>
       <span class="mono">© {{ site.name }}</span>
     </div>
 

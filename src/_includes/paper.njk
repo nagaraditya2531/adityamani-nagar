@@ -7,7 +7,7 @@ layout: base.njk
   <article class="article article--paper">
 
     <header class="paper-head">
-      <a class="crumb" href="/publications/">← Publications</a>
+      <a class="crumb" href="/publications/">{{ pagetext.back_labels.publications or "← Publications" }}</a>
       <h1>{{ (title or "Untitled") | chem | safe }}</h1>
       {% if authors %}<p class="paper-authors">{{ authors | chem | safe }}</p>{% endif %}
     </header>

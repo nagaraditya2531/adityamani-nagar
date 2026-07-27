@@ -6,7 +6,7 @@ layout: base.njk
   <article class="article">
     <div class="pagehead">
       <a class="crumb" href="{% if kind == 'conference' %}/conferences/{% else %}/detours/{% endif %}">
-        ← {% if kind == 'conference' %}Conferences{% else %}Detours{% endif %}
+        {% if kind == 'conference' %}{{ pagetext.back_labels.conferences or "← Conferences" }}{% else %}{{ pagetext.back_labels.detours or "← Detours" }}{% endif %}
       </a>
       <h1>{{ (title or "Untitled") | chem | safe }}</h1>
       <p class="article-meta">
