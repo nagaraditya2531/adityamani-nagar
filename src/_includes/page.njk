@@ -1,0 +1,23 @@
+---
+layout: base.njk
+---
+{# page.njk — a free-standing page created from the CMS. #}
+<div class="wrap">
+  <article class="article">
+    <div class="pagehead">
+      {% if eyebrow %}<span class="mono">{{ eyebrow }}</span>{% endif %}
+      <h1>{{ (title or "Untitled") | chem | safe }}</h1>
+      {% if standfirst %}<p>{{ standfirst | chem | safe }}</p>{% endif %}
+    </div>
+    <div class="page-body">
+      {{ content | safe }}
+      {% if categories and categories.length %}
+      <ul class="chips" style="margin-top:2.5rem">
+        {% for cat in categories %}
+        <li><a href="/topics/{{ cat }}/">{{ cat | categoryLabel(collections.categories) }}</a></li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </div>
+  </article>
+</div>
