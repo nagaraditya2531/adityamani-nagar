@@ -1,0 +1,77 @@
+---
+pagination:
+  data: collections.categories
+  size: 1
+  alias: category
+permalink: "/topics/{{ category.fileSlug }}/"
+layout: base.njk
+eleventyComputed:
+  title: "{{ category.data.label or category.fileSlug }}"
+  description: "Everything tagged {{ category.data.label or category.fileSlug }}."
+---
+{# One of these is generated for every category. You never create them by
+   hand — add a category in the CMS and its listing appears. #}
+{% set slug = category.fileSlug %}
+
+<div class="wrap">
+  <div class="pagehead rise">
+    <span class="mono">Topic</span>
+    <h1>{{ (category.data.label or slug) | chem | safe }}</h1>
+    {% if category.data.description %}<p>{{ category.data.description }}</p>{% endif %}
+  </div>
+</div>
+
+<section class="section">
+  <div class="wrap">
+    {% set chapters    = collections.chapters    | withCategory(slug) %}
+    {% set papers      = collections.papers      | withCategory(slug) %}
+    {% set conferences = collections.conferences | withCategory(slug) %}
+    {% set notebook    = collections.notebook    | withCategory(slug) %}
+    {% set detours     = collections.detours     | withCategory(slug) %}
+    {% set pages       = collections.pages       | withCategory(slug) %}
+    {% set total = chapters.length + papers.length + conferences.length + notebook.length + detours.length + pages.length %}
+
+    {% if total == 0 %}
+      <p class="rise" style="color:var(--ink-soft)">Nothing tagged with this yet.</p>
+    {% else %}
+      {% set groups = [
+        { label: "Research areas", items: chapters },
+        { label: "Publications",   items: papers },
+        { label: "Conferences",    items: conferences },
+        { label: "Notebook",       items: notebook },
+        { label: "Detours",        items: detours },
+        { label: "Pages",          items: pages }
+      ] %}
+
+      {% for group in groups %}
+      {% if group.items.length %}
+      <div class="rise" style="margin-bottom:2.5rem">
+        <div class="section-head"><h2>{{ group.label }}</h2></div>
+        <div class="topic-list">
+          {% for item in group.items %}
+          <article class="item">
+            {% if item.url %}
+            <a class="item-link" href="{{ item.url }}">
+              <span class="item-type">{{ group.label }}</span>
+              <span class="item-title">{{ (item.data.title or "Untitled") | chem | safe }}</span>
+              <span class="item-meta">{{ item.data.journal or item.data.event or item.data.where or item.data.summary or item.data.span or "" }}</span>
+              <span class="item-arrow" aria-hidden="true">→</span>
+            </a>
+            {% else %}
+            <div style="padding:1.2rem 0">
+              <span class="item-type" style="display:block;margin-bottom:.25rem">{{ group.label }}</span>
+              <span class="note-title">{{ (item.data.title or "Untitled") | chem | safe }}</span>
+              {% if item.data.note or item.data.summary %}
+              <p class="read-note">{{ (item.data.note or item.data.summary) | chem | safe }}</p>
+              {% endif %}
+            </div>
+            {% endif %}
+          </article>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+      {% endfor %}
+    {% endif %}
+  </div>
+</section>
