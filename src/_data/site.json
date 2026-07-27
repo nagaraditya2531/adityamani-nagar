@@ -28,6 +28,7 @@
       "children": [
         {
           "label": "conf",
+          "mode": "",
           "url": ""
         },
         {
