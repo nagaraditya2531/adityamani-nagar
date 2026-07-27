@@ -1,14 +1,11 @@
-# The "Now" block on the home page.
-# Set show: false to hide the whole block. Delete any line you don't want —
-# the page renders whatever is here and nothing more.
 show: true
 updated: July 2026
 lines:
   - label: In the lab
-    text: The actual thing on your bench this month.
+    text: Making up molecules
   - label: Reading
-    text: A book or paper, with half a sentence on why.
+    text: Atomic Habits
   - label: Away from it
     text: Something that isn't work. Keep this line.
   - label: Next
-    text: Applications, a move, a conference.
+    text: ICFE 2026
