@@ -1,8 +1,8 @@
 ---
-title: Short title — not just the place name
-where: City, Country
+title: Seal watching in Wales
+where: Llandudno, UK
 date: 2026-05-23
-photo: ""
+photo: /assets/uploads/llandudno2 (2).jpg
 summary: One line that makes someone want to read the rest.
 visibility: public
 ---
