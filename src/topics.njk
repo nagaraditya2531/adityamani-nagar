@@ -15,7 +15,7 @@ eleventyComputed:
 
 <div class="wrap">
   <div class="pagehead rise">
-    <span class="mono">Topic</span>
+    <span class="mono">{{ pagetext.topics.eyebrow or "Topic" }}</span>
     <h1>{{ (category.data.label or slug) | chem | safe }}</h1>
     {% if category.data.description %}<p>{{ category.data.description }}</p>{% endif %}
   </div>
@@ -32,7 +32,7 @@ eleventyComputed:
     {% set total = chapters.length + papers.length + conferences.length + notebook.length + detours.length + pages.length %}
 
     {% if total == 0 %}
-      <p class="rise" style="color:var(--ink-soft)">Nothing tagged with this yet.</p>
+      <p class="rise" style="color:var(--ink-soft)">{{ pagetext.topics.empty or "Nothing tagged with this yet." }}</p>
     {% else %}
       {% set groups = [
         { label: "Research areas", items: chapters },

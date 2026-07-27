@@ -6,10 +6,9 @@ description: Areas of work and open questions.
 ---
 <div class="wrap">
   <div class="pagehead rise">
-    <span class="mono">Research</span>
-    <h1>Chapters, not a specialism.</h1>
-    <p>Every area is dated. When the work moves on, the old chapter greys back and stays.
-       Changing field means adding a chapter, not rebuilding the site.</p>
+    <span class="mono">{{ pagetext.research.eyebrow or "Research" }}</span>
+    <h1>{{ pagetext.research.heading | chem | safe }}</h1>
+    {% if pagetext.research.intro %}<p>{{ pagetext.research.intro }}</p>{% endif %}
   </div>
 </div>
 
@@ -31,7 +30,7 @@ description: Areas of work and open questions.
 
 <section class="section" id="questions">
   <div class="wrap">
-    <div class="section-head rise"><h2>Open questions</h2></div>
+    <div class="section-head rise"><h2>{{ pagetext.research.questions_heading or 'Open questions' }}</h2></div>
     <ul class="qlist rise">
       {% for q in questions.questions %}
       <li>

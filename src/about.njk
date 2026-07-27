@@ -7,7 +7,7 @@ description: About me, and how to get in touch.
 {% from "icons.njk" import icon %}
 <div class="wrap">
   <div class="pagehead rise">
-    <span class="mono">About</span>
+    <span class="mono">{{ pagetext.about.eyebrow or "About" }}</span>
     <h1>{{ about.heading }}</h1>
   </div>
 </div>
@@ -23,7 +23,7 @@ description: About me, and how to get in touch.
       <div>
         {# Contact sits at the top of the right column, visible without scrolling. #}
         <div class="contact-card">
-          <span class="mono">Get in touch</span>
+          <span class="mono">{{ pagetext.about.contact_label or "Get in touch" }}</span>
           <a class="email" href="mailto:{{ site.email }}">{{ site.email }}</a>
           <ul class="iconrow">
             {% for l in site.links %}

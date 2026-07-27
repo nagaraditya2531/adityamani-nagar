@@ -6,10 +6,9 @@ description: Day trips, walks and small moments.
 ---
 <div class="wrap">
   <div class="pagehead rise">
-    <span class="mono">Detours</span>
-    <h1>The days either side.</h1>
-    <p>Day trips, long walks, food, and the small things worth writing down.
-       No professional justification offered.</p>
+    <span class="mono">{{ pagetext.detours.eyebrow or "Detours" }}</span>
+    <h1>{{ pagetext.detours.heading | chem | safe }}</h1>
+    {% if pagetext.detours.intro %}<p>{{ pagetext.detours.intro }}</p>{% endif %}
   </div>
 </div>
 

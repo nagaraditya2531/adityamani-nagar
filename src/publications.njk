@@ -6,9 +6,9 @@ description: Papers, in order.
 ---
 <div class="wrap">
   <div class="pagehead rise">
-    <span class="mono">The record</span>
-    <h1>Everything, in order.</h1>
-    <p>Each one has its own address, so it can be linked, cited and indexed on its own.</p>
+    <span class="mono">{{ pagetext.publications.eyebrow or "The record" }}</span>
+    <h1>{{ pagetext.publications.heading | chem | safe }}</h1>
+    {% if pagetext.publications.intro %}<p>{{ pagetext.publications.intro }}</p>{% endif %}
   </div>
 </div>
 

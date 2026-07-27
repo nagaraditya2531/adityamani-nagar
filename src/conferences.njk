@@ -6,9 +6,9 @@ description: Talks, posters and meetings.
 ---
 <div class="wrap">
   <div class="pagehead rise">
-    <span class="mono">Conferences</span>
-    <h1>Where the work has been presented.</h1>
-    <p>Talks, posters and meetings — and occasionally what changed because of them.</p>
+    <span class="mono">{{ pagetext.conferences.eyebrow or "Conferences" }}</span>
+    <h1>{{ pagetext.conferences.heading | chem | safe }}</h1>
+    {% if pagetext.conferences.intro %}<p>{{ pagetext.conferences.intro }}</p>{% endif %}
   </div>
 </div>
 

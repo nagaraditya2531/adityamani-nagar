@@ -6,10 +6,9 @@ description: Essays, and notes on what I'm reading.
 ---
 <div class="wrap">
   <div class="pagehead rise">
-    <span class="mono">Notebook</span>
-    <h1>Thinking out loud, and reading notes.</h1>
-    <p>Essays when I have something worth arguing, and a line or two on books and
-       papers that changed something. Less polished than the papers, often more useful.</p>
+    <span class="mono">{{ pagetext.notebook.eyebrow or "Notebook" }}</span>
+    <h1>{{ pagetext.notebook.heading | chem | safe }}</h1>
+    {% if pagetext.notebook.intro %}<p>{{ pagetext.notebook.intro }}</p>{% endif %}
   </div>
 </div>
 

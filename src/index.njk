@@ -7,13 +7,9 @@ description: Researcher and writer. Research, publications, essays, reading and 
   <div class="wrap">
     <div class="intro">
       <div>
-        <span class="hero-eyebrow mono rise">{{ site.tagline }} · {{ site.location }}</span>
-        <h1 class="rise">I'm {{ site.name.split(" ")[0] }}. I ask questions for a living, and write down the ones I can't answer yet.</h1>
-        <p class="hero-lede rise">
-          Right now that means chemistry — <strong>separation, coordination, the behaviour of
-          things in solution</strong>. It may not always. What doesn't change is the habit of
-          keeping a record.
-        </p>
+        <span class="hero-eyebrow mono rise">{{ pagetext.home.eyebrow or (site.tagline + " · " + site.location) }}</span>
+        <h1 class="rise">{{ pagetext.home.heading | chem | safe }}</h1>
+        <p class="hero-lede rise">{{ pagetext.home.intro | chem | safe }}</p>
       </div>
       <figure class="portrait rise">
         <img src="{{ site.portrait }}" alt="{{ site.name }}, {{ site.jobTitle }} at {{ site.affiliation }}" fetchpriority="high">
@@ -43,8 +39,8 @@ description: Researcher and writer. Research, publications, essays, reading and 
 <section class="section">
   <div class="wrap">
     <div class="section-head rise">
-      <h2>Recently</h2>
-      <a class="more" href="/publications/">Full record →</a>
+      <h2>{{ pagetext.home.recent_heading or 'Recently' }}</h2>
+      <a class="more" href="/publications/">{{ pagetext.home.recent_link or "Full record →" }}</a>
     </div>
     <div class="feed rise">
       {% for item in collections.everything | limit(5) %}
@@ -69,8 +65,8 @@ description: Researcher and writer. Research, publications, essays, reading and 
 <section class="section">
   <div class="wrap">
     <div class="section-head rise">
-      <h2>Open questions</h2>
-      <a class="more" href="/research/#questions">All questions →</a>
+      <h2>{{ pagetext.home.questions_heading or 'Open questions' }}</h2>
+      <a class="more" href="/research/#questions">{{ pagetext.home.questions_link or "All questions →" }}</a>
     </div>
     <ul class="qlist rise">
       {% for q in questions.questions | limit(2) %}
@@ -85,10 +81,9 @@ description: Researcher and writer. Research, publications, essays, reading and 
 
 <section class="section">
   <div class="wrap">
-    <div class="section-head rise"><h2>Away from the bench</h2></div>
+    <div class="section-head rise"><h2>{{ pagetext.home.personal_heading or 'Away from the bench' }}</h2></div>
     <div class="rise" style="max-width:56ch">
-      <p>Three or four sentences about what you do when you're not working. Be specific and
-         slightly odd — the reader has met a hundred people who "enjoy travelling and reading."</p>
+      <p>{{ pagetext.home.personal_text }}</p>
       <div class="elsewhere">
         <a href="/notebook/">What I'm reading</a>
         <a href="/detours/">Where I've been</a>
