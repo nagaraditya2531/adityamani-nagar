@@ -64,6 +64,7 @@
       "label": "Publications",
       "url": "/publications/",
       "subnav": true,
+      "autoTopics": true,
       "children": [
         {
           "label": "extraction",
