@@ -1,11 +1,11 @@
 ---
-title: Seal watching in Wales 2
-where: Llandudno, UK
+title: Walk in the neighbourhood
+where: Wetlands, UK
 date: ''
-photo: /assets/uploads/llandudno2.jpg
-summary: ''
+photo: /assets/uploads/IMG20260510083749 (2) (1).jpg
+summary: peaceful walk with a sense of gratitude
 categories: []
 visibility: public
 ---
 
-NONE
+Went on a run, turned into a beautiful walk instead
