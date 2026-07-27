@@ -74,6 +74,21 @@ module.exports = function (eleventyConfig) {
     return visible(all).sort(newestFirst);
   });
 
+  /* ---- The shared category vocabulary ----------------------------------
+     Categories are metadata, not folders. Retagging an item never changes
+     its URL — only the /topics/<name>/ listing is affected. -------------- */
+  eleventyConfig.addCollection("categories", (c) =>
+    visible(c.getFilteredByGlob("src/content/categories/*.md")).sort((a, b) =>
+      (a.data.label || a.fileSlug || "").localeCompare(b.data.label || b.fileSlug || "")
+    )
+  );
+
+  /* Free-standing pages made in the CMS. Not listed automatically —
+     you point a menu or sub-menu item at one. */
+  eleventyConfig.addCollection("pages", (c) =>
+    visible(c.getFilteredByGlob("src/content/pages/*.md"))
+  );
+
   eleventyConfig.addCollection("conferences", (c) =>
     visible(c.getFilteredByGlob("src/content/conferences/*.md")).sort(newestFirst)
   );
@@ -168,6 +183,19 @@ module.exports = function (eleventyConfig) {
       .sort((a, b) => b.url.length - a.url.length)[0];
 
     return byPrefix || null;
+  });
+
+  /* Everything tagged with a given category. Used by the topic pages. */
+  eleventyConfig.addFilter("withCategory", (items, slug) =>
+    (items || []).filter((i) =>
+      (i.data.categories || []).map(String).includes(String(slug))
+    )
+  );
+
+  /* Turn a category's slug into its display label. */
+  eleventyConfig.addFilter("categoryLabel", (slug, categories) => {
+    const hit = (categories || []).find((c) => c.fileSlug === String(slug));
+    return hit ? hit.data.label || hit.fileSlug : slug;
   });
 
   // Take the first N of a list.
