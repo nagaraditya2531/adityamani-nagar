@@ -19,12 +19,12 @@
     {
       "label": "Research",
       "url": "/research/",
-      "subnav": false,
+      "subnav": true,
       "children": [
         {
-          "label": "computational",
+          "label": "Separation Science",
           "mode": "topic",
-          "topic": "computational",
+          "topic": "separation",
           "url": ""
         }
       ]
