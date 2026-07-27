@@ -453,15 +453,23 @@ sub{bottom:-.22em}
 /* =========================================================
    Sub-navigation. Only rendered when a section has one.
    ========================================================= */
-.subbar{border-top:1px solid var(--line-soft)}
-.subnav{display:flex;flex-wrap:wrap;gap:.5rem 1.4rem;padding:.55rem 0 .6rem}
+.subbar{border-top:1px solid var(--line-soft);background:color-mix(in srgb,var(--surface) 45%,transparent)}
+.subnav{display:flex;flex-wrap:wrap;gap:.3rem;padding:.5rem 0}
 .subnav a{
-  font-family:var(--mono);font-size:.62rem;letter-spacing:.13em;text-transform:uppercase;
-  text-decoration:none;color:var(--ink-faint);padding:.15rem 0;
-  border-bottom:1px solid transparent;transition:color .2s,border-color .2s;
+  font-family:var(--mono);font-size:.64rem;letter-spacing:.11em;text-transform:uppercase;
+  text-decoration:none;color:var(--ink-soft);
+  padding:.34rem .6rem;
+  border:1px solid var(--line-soft);
+  transition:color .2s,border-color .2s,background .2s;
 }
-.subnav a:hover{color:var(--ink)}
-.subnav a[aria-current="page"]{color:var(--ink);border-color:var(--accent-warm)}
+.subnav a:hover,.subnav a:focus-visible{
+  color:var(--paper);background:var(--ink);border-color:var(--ink);
+}
+.subnav a[aria-current="page"]{
+  color:var(--ink);border-color:var(--accent-warm);
+  background:color-mix(in srgb,var(--accent-warm) 12%,transparent);
+}
+:root[data-theme="dark"] .subnav a[aria-current="page"]{color:var(--paper)}
 
 /* parent item stays lit while you're inside one of its sub-pages */
 .topnav a[data-section="true"]{color:var(--ink-soft);border-color:var(--line)}
