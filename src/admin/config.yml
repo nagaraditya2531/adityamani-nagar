@@ -14,6 +14,7 @@ backend:
   repo: nagaraditya2531/nagaraditya2531.github.io   # change if you rename the repo
   branch: main
 
+
 # Where the CMS puts anything you upload.
 media_folder: "src/assets/uploads"
 public_folder: "/assets/uploads"
@@ -324,6 +325,18 @@ collections:
   - name: settings
     label: Settings
     files:
+      - name: publish
+        required: false
+        label: "▶ Publish site"
+        file: "src/_data/publish.yaml"
+        fields:
+          - name: last_published
+            required: false
+            label: "Publish everything saved so far"
+            widget: datetime
+            hint: "Change this to today and press Publish. That is what makes your saved changes go live."
+          - { name: note, label: "What changed (optional, for your own records)", widget: string, required: false }
+
       - name: site
         label: "Site — name, menu, links"
         file: "src/_data/site.json"
