@@ -5,7 +5,6 @@ span: 2026 — present
 status: active
 summary: High Valent Rare Earth Multiple Bonds
 meta: ''
-categories:
-  - separation
+categories: []
 visibility: public
 ---
