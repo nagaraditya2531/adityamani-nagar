@@ -94,6 +94,17 @@
   <div class="subbar">
     <div class="wrap">
       <nav class="subnav" aria-label="{{ active.label }} sections">
+        {# --- Automatic mode: every category becomes a sub-menu item, in
+               alphabetical order. Nothing to maintain when you add one. --- #}
+        {% if active.autoTopics %}
+          {% for cat in collections.categories %}
+          {% set href = "/topics/" + cat.fileSlug + "/" %}
+          <a href="{{ href }}"{% if href == page.url %} aria-current="page"{% endif %}>{{ cat.data.label or cat.fileSlug }}</a>
+          {% endfor %}
+        {% endif %}
+
+        {# --- Hand-picked items. These appear after any automatic ones,
+               so you can mix "all topics" with a couple of pages. --- #}
         {% for child in active.children %}
         {% if child.label %}
           {# A sub-item points either at a Topic (a generated listing of
