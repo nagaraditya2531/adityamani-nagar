@@ -19,7 +19,7 @@
     {
       "label": "Research",
       "url": "/research/",
-      "subnav": true,
+      "subnav": false,
       "children": [
         {
           "label": "computational",
@@ -36,14 +36,10 @@
       "autoTopics": true,
       "children": [
         {
-          "label": "extraction",
+          "label": "Extraction",
           "mode": "page",
-          "topic": "separation",
+          "topic": "",
           "url": "/extraction/"
-        },
-        {
-          "label": "synthesis",
-          "url": ""
         }
       ]
     },
