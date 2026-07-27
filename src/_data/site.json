@@ -62,7 +62,20 @@
     },
     {
       "label": "Publications",
-      "url": "/publications/"
+      "url": "/publications/",
+      "subnav": true,
+      "children": [
+        {
+          "label": "extraction",
+          "mode": "page",
+          "topic": "separation",
+          "url": "/extraction/"
+        },
+        {
+          "label": "synthesis",
+          "url": ""
+        }
+      ]
     },
     {
       "label": "Conferences",
