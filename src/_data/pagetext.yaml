@@ -8,12 +8,32 @@ home:
   questions_link: ''
   personal_heading: ''
   personal_text: ''
-research: null
-publications: null
-notebook: null
-conferences: null
-detours: null
-about: null
+research:
+  eyebrow: Research
+  heading: Chapters, not a specialism.
+  intro: |-
+    Every area is dated. When the work moves on, the old chapter greys back and
+        stays. Changing field means adding a chapter, not rebuilding the site.
+  questions_heading: Open questions
+publications:
+  eyebrow: The record
+  heading: Everything, in order.
+  intro: Each one has its own address, so it can be linked, cited and indexed on its own.
+notebook:
+  eyebrow: Notebook
+  heading: Thinking out loud, and reading notes.
+  intro: Essays when I have something worth arguing, and a line or two on books and papers that changed something.
+conferences:
+  eyebrow: Conferences
+  heading: Where the work has been presented.
+  intro: Talks, posters and meetings — and occasionally what changed because of them.
+detours:
+  eyebrow: Detours
+  heading: The days either side.
+  intro: ay trips, long walks, food, and the small things worth writing down.
+about:
+  eyebrow: About
+  contact_label: Get in touch
 topics: null
 footer: null
 back_labels: null
