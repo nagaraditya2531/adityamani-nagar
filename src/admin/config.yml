@@ -337,6 +337,106 @@ collections:
             hint: "Change this to today and press Publish. That is what makes your saved changes go live."
           - { name: note, label: "What changed (optional, for your own records)", widget: string, required: false }
 
+      - name: pagetext
+        required: false
+        label: "Page text — all fixed wording"
+        file: "src/_data/pagetext.yaml"
+        fields:
+          - name: home
+            required: false
+            label: "Home page"
+            widget: object
+            fields:
+              - { name: eyebrow, label: "Small label at the top", widget: string, required: false, hint: "Leave blank to use your tagline and location" }
+              - { name: heading, label: "Big opening line", widget: text, required: false }
+              - { name: intro, label: "Paragraph under it", widget: text, required: false }
+              - { name: recent_heading, label: "'Recently' heading", widget: string, required: false }
+              - { name: recent_link, label: "Link beside it", widget: string, required: false }
+              - { name: questions_heading, label: "Questions heading", widget: string, required: false }
+              - { name: questions_link, label: "Link beside it", widget: string, required: false }
+              - { name: personal_heading, label: "Personal section heading", widget: string, required: false }
+              - { name: personal_text, label: "Personal section text", widget: text, required: false }
+
+          - name: research
+            required: false
+            label: "Research page"
+            widget: object
+            fields:
+              - { name: eyebrow, label: "Small label", widget: string, required: false }
+              - { name: heading, label: Heading, widget: text, required: false }
+              - { name: intro, label: Intro, widget: text, required: false }
+              - { name: questions_heading, label: "Questions heading", widget: string, required: false }
+
+          - name: publications
+            required: false
+            label: "Publications page"
+            widget: object
+            fields:
+              - { name: eyebrow, label: "Small label", widget: string, required: false }
+              - { name: heading, label: Heading, widget: text, required: false }
+              - { name: intro, label: Intro, widget: text, required: false }
+
+          - name: notebook
+            required: false
+            label: "Notebook page"
+            widget: object
+            fields:
+              - { name: eyebrow, label: "Small label", widget: string, required: false }
+              - { name: heading, label: Heading, widget: text, required: false }
+              - { name: intro, label: Intro, widget: text, required: false }
+
+          - name: conferences
+            required: false
+            label: "Conferences page"
+            widget: object
+            fields:
+              - { name: eyebrow, label: "Small label", widget: string, required: false }
+              - { name: heading, label: Heading, widget: text, required: false }
+              - { name: intro, label: Intro, widget: text, required: false }
+
+          - name: detours
+            required: false
+            label: "Detours page"
+            widget: object
+            fields:
+              - { name: eyebrow, label: "Small label", widget: string, required: false }
+              - { name: heading, label: Heading, widget: text, required: false }
+              - { name: intro, label: Intro, widget: text, required: false }
+
+          - name: about
+            required: false
+            label: "About page"
+            widget: object
+            fields:
+              - { name: eyebrow, label: "Small label", widget: string, required: false }
+              - { name: contact_label, label: "Contact label", widget: string, required: false }
+
+          - name: topics
+            required: false
+            label: "Topic pages"
+            widget: object
+            fields:
+              - { name: eyebrow, label: "Small label", widget: string, required: false }
+              - { name: empty, label: "Message when nothing is tagged", widget: string, required: false }
+
+          - name: footer
+            required: false
+            label: Footer
+            widget: object
+            fields:
+              - { name: tagline, label: "Tagline", widget: string, required: false }
+              - { name: updated_label, label: "'Last updated' wording", widget: string, required: false }
+
+          - name: back_labels
+            required: false
+            label: "Back links"
+            widget: object
+            fields:
+              - { name: publications, label: "On a paper page", widget: string, required: false }
+              - { name: notebook, label: "On an essay page", widget: string, required: false }
+              - { name: conferences, label: "On a conference page", widget: string, required: false }
+              - { name: detours, label: "On a detour page", widget: string, required: false }
+
       - name: site
         label: "Site — name, menu, links"
         file: "src/_data/site.json"
