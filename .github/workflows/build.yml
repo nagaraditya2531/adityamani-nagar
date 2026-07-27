@@ -1,17 +1,32 @@
 # =============================================================================
-# This runs on GitHub every time anything is saved to the repository —
-# including when you press Publish in the CMS. It builds the site and
-# deploys it. You never run this yourself.
+# Builds and publishes the site.
 #
-# If the site stops updating, look at the "Actions" tab of the repo.
-# A red X there tells you what broke.
+# HOW PUBLISHING WORKS
+#
+# Content changes do NOT go live on their own. Editing a paper, essay,
+# conference or category in the CMS saves it to GitHub — safely stored and
+# versioned — but the live site stays as it is.
+#
+# To publish everything you've saved:
+#     CMS -> Settings -> Publish site -> change the date -> Publish
+#
+# That one file is not in `paths-ignore` below, so saving it triggers a build
+# and the whole site goes live at once.
+#
+# Changes to templates, CSS or config still build immediately, because you
+# almost always want those live straight away.
+#
+# TO GO BACK TO PUBLISHING INSTANTLY: delete the `paths-ignore` block.
 # =============================================================================
 name: Build and deploy
 
 on:
   push:
     branches: [main]
-  workflow_dispatch:        # lets you press "Run workflow" by hand
+    paths-ignore:
+      - 'src/content/**'          # papers, essays, conferences, categories…
+      - 'src/assets/uploads/**'   # images added through the CMS
+  workflow_dispatch:              # the "Run workflow" button, as a backstop
 
 permissions:
   contents: read
