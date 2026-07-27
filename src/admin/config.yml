@@ -359,6 +359,12 @@ collections:
                 widget: boolean
                 default: false
                 hint: "Off = nothing changes. On = the items below appear as a second row."
+              - name: autoTopics
+                required: false
+                label: "List all topics automatically?"
+                widget: boolean
+                default: false
+                hint: "On = every category you create appears here by itself, in alphabetical order. Nothing to maintain. Any hand-picked items below are added after them."
               - name: children
                 required: false
                 label: "Sub-menu items"
