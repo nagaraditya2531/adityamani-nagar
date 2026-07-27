@@ -453,23 +453,36 @@ sub{bottom:-.22em}
 /* =========================================================
    Sub-navigation. Only rendered when a section has one.
    ========================================================= */
-.subbar{border-top:1px solid var(--line-soft);background:color-mix(in srgb,var(--surface) 45%,transparent)}
-.subnav{display:flex;flex-wrap:wrap;gap:.3rem;padding:.5rem 0}
+.subbar{border-top:1px solid var(--line-soft)}
+.subnav{display:flex;flex-wrap:wrap;gap:.5rem 1.4rem;padding:.55rem 0 .6rem}
 .subnav a{
-  font-family:var(--mono);font-size:.64rem;letter-spacing:.11em;text-transform:uppercase;
-  text-decoration:none;color:var(--ink-soft);
-  padding:.34rem .6rem;
-  border:1px solid var(--line-soft);
-  transition:color .2s,border-color .2s,background .2s;
+  font-family:var(--mono);font-size:.62rem;letter-spacing:.13em;text-transform:uppercase;
+  text-decoration:none;color:var(--ink-faint);padding:.15rem 0;
+  border-bottom:1px solid transparent;transition:color .2s,border-color .2s;
 }
-.subnav a:hover,.subnav a:focus-visible{
-  color:var(--paper);background:var(--ink);border-color:var(--ink);
-}
-.subnav a[aria-current="page"]{
-  color:var(--ink);border-color:var(--accent-warm);
-  background:color-mix(in srgb,var(--accent-warm) 12%,transparent);
-}
-:root[data-theme="dark"] .subnav a[aria-current="page"]{color:var(--paper)}
+.subnav a:hover{color:var(--ink)}
+.subnav a[aria-current="page"]{color:var(--ink);border-color:var(--accent-warm)}
 
 /* parent item stays lit while you're inside one of its sub-pages */
 .topnav a[data-section="true"]{color:var(--ink-soft);border-color:var(--line)}
+
+/* ---- topic chips: an item's categories, linking to their listings ---- */
+.chips{list-style:none;margin:.4rem 0 0;padding:0;display:flex;flex-wrap:wrap;gap:.35rem}
+.chips a{
+  display:inline-block;font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink-soft);text-decoration:none;
+  border:1px solid var(--line);padding:.3rem .55rem;
+  transition:color .2s,background .2s,border-color .2s;
+}
+.chips a:hover{color:var(--paper);background:var(--ink);border-color:var(--ink)}
+
+/* ---- free-standing CMS pages ---- */
+.page-body{max-width:62ch}
+.page-body h2{font-size:1.4rem;margin:2.2rem 0 .8rem}
+.page-body h3{font-size:1.15rem;margin:1.8rem 0 .6rem}
+.page-body ul,.page-body ol{padding-left:1.2rem;max-width:62ch}
+.page-body li{margin-bottom:.4rem}
+.page-body img{max-width:100%;height:auto;border:1px solid var(--line-soft);margin:1.5rem 0}
+.page-body a{color:var(--accent)}
+.topic-list{border-top:1px solid var(--line)}
+.topic-list .item{border-bottom:1px solid var(--line-soft)}
